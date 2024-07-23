@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/Featuers/splash/presentation/views/widget/animate_splash_view.dart';
+import 'package:newsapp/Featuers/splash/presentation/views/widget/animate_splash_view_body.dart';
 
-class SplashScreenView extends StatelessWidget {
-  const SplashScreenView({super.key});
+class SplashView extends StatelessWidget {
+  const SplashView({super.key});
 
   @override
   Widget build(BuildContext context) {

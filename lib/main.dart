@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/Featuers/splash/presentation/views/splash_view.dart';
+import 'package:newsapp/Core/utils/app_router.dart';
+import 'package:newsapp/constants.dart';
 
 void main() {
   runApp(const NewsApp());
@@ -10,9 +11,11 @@ class NewsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SplashScreenView(),
-    );
+    return MaterialApp.router(
+        routerConfig: AppRouter.router,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: kPrimaryColor,
+        ));
   }
 }
