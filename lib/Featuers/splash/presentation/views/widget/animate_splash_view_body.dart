@@ -21,7 +21,7 @@ class AnimatedSplashScreenState extends State<AnimatedSplashScreen>
     super.initState();
 
     _controller = AnimationController(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 3),
       vsync: this,
     );
 
