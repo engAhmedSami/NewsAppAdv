@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:newsapp/Core/utils/app_router.dart';
+import 'package:newsapp/Featuers/on_boarding/presentation/view/on_boarding_view.dart';
 import 'package:newsapp/Featuers/splash/presentation/views/widget/splash_view_text.dart';
 
 class AnimatedSplashScreen extends StatefulWidget {
@@ -36,7 +35,7 @@ class AnimatedSplashScreenState extends State<AnimatedSplashScreen>
     _controller.forward();
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        GoRouter.of(context).push(AppRouter.kHomeView);
+        Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
       }
     });
   }

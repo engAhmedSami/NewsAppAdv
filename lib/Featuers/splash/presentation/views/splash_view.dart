@@ -4,6 +4,8 @@ import 'package:newsapp/Featuers/splash/presentation/views/widget/animate_splash
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
 
+  static const String routeName = 'Splash';
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
