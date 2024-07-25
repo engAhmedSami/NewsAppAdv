@@ -31,17 +31,12 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter:
     sdk: flutter
-  go_router: ^14.2.1
   flutter_localizations:
-        sdk: flutter
+    sdk: flutter
+  go_router: ^14.2.1
 
 dev_dependencies:
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
+  flutter_launcher_icons: ^0.13.1
   flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
@@ -77,3 +72,10 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_intl:
   enabled: true
+
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/news_logo.png"
+  min_sdk_android: 21
