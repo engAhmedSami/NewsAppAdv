@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:newsapp/Featuers/on_boarding/presentation/view/on_boarding_view.dart';
 import 'package:newsapp/Featuers/splash/presentation/views/widget/splash_view_text.dart';
 
-class AnimatedSplashScreen extends StatefulWidget {
-  const AnimatedSplashScreen({super.key});
+class AnimatedSplashViewBody extends StatefulWidget {
+  const AnimatedSplashViewBody({super.key});
 
   @override
-  AnimatedSplashScreenState createState() => AnimatedSplashScreenState();
+  AnimatedSplashViewBodyState createState() => AnimatedSplashViewBodyState();
 }
 
-class AnimatedSplashScreenState extends State<AnimatedSplashScreen>
+class AnimatedSplashViewBodyState extends State<AnimatedSplashViewBody>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _opacityAnimation;
-  late Animation<double> _scaleAnimation;
+  late final AnimationController _controller;
+  late final Animation<double> _opacityAnimation;
+  late final Animation<double> _scaleAnimation;
 
   @override
   void initState() {
@@ -28,16 +28,14 @@ class AnimatedSplashScreenState extends State<AnimatedSplashScreen>
       CurvedAnimation(parent: _controller, curve: Curves.easeIn),
     );
 
-    _scaleAnimation = Tween<double>(begin: 0.5, end: 1.2).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.elasticOut),
+    _scaleAnimation = Tween<double>(begin: 0.5, end: 1.0).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
     );
 
     _controller.forward();
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Future.delayed(const Duration(seconds: 1), () {
-          Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
-        });
+        Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
       }
     });
   }
@@ -51,7 +49,7 @@ class AnimatedSplashScreenState extends State<AnimatedSplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SplashScreenBody(
+      body: SplashViewText(
         controller: _controller,
         opacityAnimation: _opacityAnimation,
         scaleAnimation: _scaleAnimation,

@@ -10,7 +10,7 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Color(0xffe4e8e9),
-      body: AnimatedSplashScreen(),
+      body: AnimatedSplashViewBody(),
     );
   }
 }

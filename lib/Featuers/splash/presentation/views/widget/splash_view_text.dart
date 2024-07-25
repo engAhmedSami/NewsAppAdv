@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
 
-class SplashScreenBody extends StatelessWidget {
-  const SplashScreenBody({
+class SplashViewText extends StatelessWidget {
+  const SplashViewText({
     super.key,
     required AnimationController controller,
     required Animation<double> opacityAnimation,
