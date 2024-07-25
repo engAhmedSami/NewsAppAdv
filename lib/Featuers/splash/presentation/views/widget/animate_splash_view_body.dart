@@ -28,14 +28,16 @@ class AnimatedSplashScreenState extends State<AnimatedSplashScreen>
       CurvedAnimation(parent: _controller, curve: Curves.easeIn),
     );
 
-    _scaleAnimation = Tween<double>(begin: 0.5, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
+    _scaleAnimation = Tween<double>(begin: 0.5, end: 1.2).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.elasticOut),
     );
 
     _controller.forward();
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
+        Future.delayed(const Duration(seconds: 1), () {
+          Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
+        });
       }
     });
   }
@@ -48,10 +50,12 @@ class AnimatedSplashScreenState extends State<AnimatedSplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    return SplashScreenBody(
-      controller: _controller,
-      opacityAnimation: _opacityAnimation,
-      scaleAnimation: _scaleAnimation,
+    return Scaffold(
+      body: SplashScreenBody(
+        controller: _controller,
+        opacityAnimation: _opacityAnimation,
+        scaleAnimation: _scaleAnimation,
+      ),
     );
   }
 }

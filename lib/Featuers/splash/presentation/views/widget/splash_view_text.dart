@@ -17,44 +17,34 @@ class SplashScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        AnimatedBuilder(
-          animation: _controller,
-          builder: (context, child) => Opacity(
-            opacity: _opacityAnimation.value,
-            child: ScaleTransition(
-              scale: _scaleAnimation,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/newsicon-removebg-preview.png',
-                    height: 100,
+    return Center(
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) => Opacity(
+          opacity: _opacityAnimation.value,
+          child: ScaleTransition(
+            scale: _scaleAnimation,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/newsicon-removebg-preview.png',
+                  height: 100,
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  'News',
+                  style: AppStyles.styleBold30.copyWith(
+                    color: const Color(0xFF064060),
                   ),
-                  Text(
-                    'News',
-                    style: AppStyles.styleBold30.copyWith(
-                      color: const Color(0xFF064060),
-                    ),
-                  ),
-                  const Text('Watch', style: AppStyles.styleBold30),
-                ],
-              ),
+                ),
+                const SizedBox(width: 5),
+                const Text('Watch', style: AppStyles.styleBold30),
+              ],
             ),
           ),
         ),
-        const SizedBox(height: 20),
-        FadeTransition(
-          opacity: _opacityAnimation,
-          child: const Text(
-            'All type of news from all trusted sources for all type of people',
-            textAlign: TextAlign.center,
-            style: AppStyles.styleMedium16,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
