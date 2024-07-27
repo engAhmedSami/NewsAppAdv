@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/login_view.dart';
 import 'package:newsapp/Featuers/on_boarding/presentation/view/on_boarding_view.dart';
 import 'package:newsapp/Featuers/splash/presentation/views/widget/splash_view_text.dart';
+import 'package:newsapp/constants.dart';
 
 class AnimatedSplashViewBody extends StatefulWidget {
   const AnimatedSplashViewBody({super.key});
@@ -19,29 +22,42 @@ class AnimatedSplashViewBodyState extends State<AnimatedSplashViewBody>
   void initState() {
     super.initState();
 
+    // Initialize AnimationController
     _controller = AnimationController(
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 2),
       vsync: this,
     );
 
+    // Define the opacity animation
     _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeIn),
     );
 
+    // Define the scale animation
     _scaleAnimation = Tween<double>(begin: 0.5, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOut),
     );
 
+    // Start the animation
     _controller.forward();
+
+    // Add listener to handle navigation upon animation completion
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
+        bool isOnBoardingViewSeen =
+            Prfs.getBool(kIsOnBoardingViewSeen) ?? false;
+        if (isOnBoardingViewSeen) {
+          Navigator.pushReplacementNamed(context, LoginView.routeName);
+        } else {
+          Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
+        }
       }
     });
   }
 
   @override
   void dispose() {
+    // Dispose of the AnimationController
     _controller.dispose();
     super.dispose();
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class LoginView extends StatelessWidget {
+  const LoginView({super.key});
+
+  static const routeName = 'Login';
 
   @override
   Widget build(BuildContext context) {

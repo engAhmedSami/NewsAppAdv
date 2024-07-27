@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/Core/utils/app_colors.dart';
+import 'package:newsapp/Core/utils/app_images.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
 
 class SplashViewText extends StatelessWidget {
@@ -28,15 +30,14 @@ class SplashViewText extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/images/newsicon-removebg-preview.png',
+                  Assets.imagesNewsiconRemovebgPreview,
                   height: 100,
                 ),
                 const SizedBox(width: 10),
                 Text(
                   'News',
-                  style: AppStyles.styleBold30.copyWith(
-                    color: const Color(0xFF064060),
-                  ),
+                  style: AppStyles.styleBold30
+                      .copyWith(color: AppColors.secondaryColor),
                 ),
                 const SizedBox(width: 5),
                 const Text('Watch', style: AppStyles.styleBold30),

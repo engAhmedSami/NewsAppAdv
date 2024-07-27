@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:newsapp/Core/utils/helper_function/on_generate_routes.dart';
-import 'package:newsapp/constants.dart';
+import 'package:newsapp/Core/helper_function/on_generate_routes.dart';
+import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
+import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/generated/l10n.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Prfs.init();
   runApp(const NewsApp());
 }
 
@@ -23,8 +26,9 @@ class NewsApp extends StatelessWidget {
         supportedLocales: S.delegate.supportedLocales,
         onGenerateRoute: onGenerateRoute,
         debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: kPrimaryColor,
+        theme: ThemeData(
+          scaffoldBackgroundColor: AppColors.primaryColor,
+          fontFamily: 'Montserrat',
         ));
   }
 }
