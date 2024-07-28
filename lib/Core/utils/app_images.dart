@@ -1,6 +1,10 @@
 class Assets {
   Assets._();
   
+  /// Assets for imagesApple
+  /// assets/images/apple.svg
+  static const String imagesApple = "assets/images/apple.svg";
+
   /// Assets for imagesBackGroundImage
   /// assets/images/back_ground_image.svg
   static const String imagesBackGroundImage = "assets/images/back_ground_image.svg";
@@ -9,9 +13,17 @@ class Assets {
   /// assets/images/back_ground_image2.svg
   static const String imagesBackGroundImage2 = "assets/images/back_ground_image2.svg";
 
+  /// Assets for imagesFacebook
+  /// assets/images/facebook.svg
+  static const String imagesFacebook = "assets/images/facebook.svg";
+
   /// Assets for imagesGetstartednewsapp
   /// assets/images/getstartednewsapp.png
   static const String imagesGetstartednewsapp = "assets/images/getstartednewsapp.png";
+
+  /// Assets for imagesGoogel
+  /// assets/images/googel.svg
+  static const String imagesGoogel = "assets/images/googel.svg";
 
   /// Assets for imagesImage1Resized
   /// assets/images/image1_resized.png
