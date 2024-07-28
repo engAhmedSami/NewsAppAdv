@@ -4,7 +4,8 @@ import 'package:newsapp/Core/utils/app_images.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
 import 'package:newsapp/Core/widget/custom_text_field.dart';
-import 'package:newsapp/Featuers/auth/presentation/view/widget/dont_have_an%20_account_widget.dart';
+import 'package:newsapp/Core/widget/news_app_text.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/widget/dont_have_an_account_widget.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/or_divider.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/social_login_button.dart';
 import 'package:newsapp/constants.dart';
@@ -20,6 +21,10 @@ class LoginViewBody extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 24),
+            const NewsAppText(),
+            const SizedBox(
+              height: 16,
+            ),
             const CustomTextFormField(
               hintText: 'Email',
               textInputType: TextInputType.emailAddress,

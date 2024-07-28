@@ -13,6 +13,10 @@ class Assets {
   /// assets/images/back_ground_image2.svg
   static const String imagesBackGroundImage2 = "assets/images/back_ground_image2.svg";
 
+  /// Assets for imagesCheck
+  /// assets/images/Check.svg
+  static const String imagesCheck = "assets/images/Check.svg";
+
   /// Assets for imagesFacebook
   /// assets/images/facebook.svg
   static const String imagesFacebook = "assets/images/facebook.svg";

@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/signup_view.dart';
 
 class DontHaveAnAccountWidget extends StatelessWidget {
   const DontHaveAnAccountWidget({
@@ -18,6 +20,10 @@ class DontHaveAnAccountWidget extends StatelessWidget {
                 color: const Color(0xff949d9e),
               )),
           TextSpan(
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                Navigator.pushNamed(context, SignupView.routeName);
+              },
             text: 'Create an account',
             style: AppStyles.styleboild13.copyWith(
               color: AppColors.secondaryColor,
