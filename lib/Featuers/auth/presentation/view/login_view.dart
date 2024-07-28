@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/Core/widget/build_app.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/widget/login_view_body.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -7,11 +9,9 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Text('Home'),
-      ),
+    return Scaffold(
+      appBar: buildAppBar(context, title: 'Login'),
+      body: const LoginViewBody(),
     );
   }
 }

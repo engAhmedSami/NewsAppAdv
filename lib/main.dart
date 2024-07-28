@@ -27,8 +27,9 @@ class NewsApp extends StatelessWidget {
         onGenerateRoute: onGenerateRoute,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          scaffoldBackgroundColor: AppColors.primaryColor,
-          fontFamily: 'Montserrat',
-        ));
+            scaffoldBackgroundColor: AppColors.primaryColor,
+            fontFamily: 'Montserrat',
+            colorScheme:
+                ColorScheme.fromSeed(seedColor: AppColors.primaryColor)));
   }
 }

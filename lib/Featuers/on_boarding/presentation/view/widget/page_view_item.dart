@@ -23,12 +23,14 @@ class PageViewItem extends StatelessWidget {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(height: 50),
             Image.asset(
               image,
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 50),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
               child: Text(
                 subtitle,
                 style: AppStyles.styleMedium16,
@@ -48,7 +50,7 @@ class PageViewItem extends StatelessWidget {
                 Navigator.of(context).pushReplacementNamed(LoginView.routeName);
               },
               child: const Padding(
-                padding: EdgeInsets.all(16),
+                padding: EdgeInsets.all(20),
                 child: Text(
                   'Skip',
                   style: AppStyles.styleMedium20,
