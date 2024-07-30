@@ -3,20 +3,24 @@ import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField(
-      {super.key,
-      required this.hintText,
-      required this.textInputType,
-      this.suffixIcon,
-      this.onSaved});
+  const CustomTextFormField({
+    super.key,
+    required this.hintText,
+    required this.textInputType,
+    this.suffixIcon,
+    this.onSaved,
+    this.obobscureText = false,
+  });
   final String hintText;
   final TextInputType textInputType;
   final Widget? suffixIcon;
   final void Function(String?)? onSaved;
+  final bool obobscureText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obobscureText,
       onSaved: onSaved,
       validator: (value) {
         if (value == null || value.isEmpty) {

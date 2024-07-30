@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsapp/Core/helper_function/failuer_top_snak_bar.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
 import 'package:newsapp/Core/widget/custom_text_field.dart';
 import 'package:newsapp/Core/widget/news_app_text.dart';
 import 'package:newsapp/Featuers/auth/presentation/signup_cubit/signup_cubit.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/have_an_account_widget.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/widget/password_field.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/terms_and_condition.dart';
 import 'package:newsapp/constants.dart';
 
@@ -19,6 +21,8 @@ class _SignupViewBodyState extends State<SignupViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   late String email, userName, password;
+  late bool isTermsAccepted = false;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -54,30 +58,40 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               const SizedBox(
                 height: 16,
               ),
-              CustomTextFormField(
+              PasswordField(
                 onSaved: (value) {
                   password = value!;
                 },
-                hintText: 'Password',
-                textInputType: TextInputType.visiblePassword,
-                suffixIcon: const Icon(
-                  Icons.remove_red_eye,
-                  color: Color(0xff949d9e),
-                ),
               ),
               const SizedBox(
                 height: 16,
               ),
-              const TermsAndCondition(),
+              TermsAndCondition(
+                onChange: (value) {
+                  isTermsAccepted = value;
+                },
+              ),
               const SizedBox(
                 height: 30,
               ),
               CustomBotton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    context.read<SignupCubit>().createUserWithEmailAndPassword(
-                        email, password, userName);
+                    if (isTermsAccepted) {
+                      formKey.currentState!.save();
+                      context
+                          .read<SignupCubit>()
+                          .createUserWithEmailAndPassword(
+                            email,
+                            password,
+                            userName,
+                          );
+                    } else {
+                      failuerTopSnackBar(
+                        context,
+                        'Please accept the terms and conditions',
+                      );
+                    }
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});

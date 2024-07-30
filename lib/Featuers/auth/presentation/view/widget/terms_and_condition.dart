@@ -4,7 +4,8 @@ import 'package:newsapp/Core/utils/app_styles.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/custom_check_box.dart';
 
 class TermsAndCondition extends StatefulWidget {
-  const TermsAndCondition({super.key});
+  const TermsAndCondition({super.key, required this.onChange});
+  final ValueChanged<bool> onChange;
 
   @override
   State<TermsAndCondition> createState() => _TermsAndConditionState();
@@ -19,6 +20,7 @@ class _TermsAndConditionState extends State<TermsAndCondition> {
         CustomCheckBox(
           onChange: (value) {
             isTearmAccepted = value;
+            widget.onChange(value);
             setState(() {});
           },
           isChecked: isTearmAccepted,
