@@ -22,9 +22,20 @@ class _PasswordFieldState extends State<PasswordField> {
       onSaved: widget.onSaved,
       hintText: 'Password',
       textInputType: TextInputType.visiblePassword,
-      suffixIcon: const Icon(
-        Icons.remove_red_eye,
-        color: Color(0xff949d9e),
+      suffixIcon: GestureDetector(
+        onTap: () {
+          obobscureText = !obobscureText;
+          setState(() {});
+        },
+        child: obobscureText
+            ? const Icon(
+                Icons.visibility_off,
+                color: Color(0XFFC9CECF),
+              )
+            : const Icon(
+                Icons.remove_red_eye,
+                color: Color(0XFFC9CECF),
+              ),
       ),
     );
   }
