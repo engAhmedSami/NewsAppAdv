@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
 import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
-import 'package:newsapp/Featuers/auth/presentation/view/login_view.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 import 'package:newsapp/Featuers/on_boarding/presentation/view/widget/on_boarding_page_view.dart';
 import 'package:newsapp/constants.dart';
 
@@ -64,7 +64,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                 onPressed: () {
                   Prfs.setBool(kIsOnBoardingViewSeen, true);
                   Navigator.of(context)
-                      .pushReplacementNamed(LoginView.routeName);
+                      .pushReplacementNamed(SigninView.routeName);
                 },
                 text: 'Get Started'),
           ),

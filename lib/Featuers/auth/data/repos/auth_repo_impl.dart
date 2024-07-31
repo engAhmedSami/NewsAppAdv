@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:newsapp/Core/errors/exceptions.dart';
 import 'package:newsapp/Core/errors/failures.dart';
@@ -24,6 +26,32 @@ class AuthRepoImpl extends AuthRepo {
     } on CustomExceptions catch (e) {
       return left(ServerFailure(e.message));
     } catch (e) {
+      log(
+        'Exception in AuthRepoImpl.createUserWithEmailAndPassword :${e.toString()}',
+      );
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failures, UserEntity>> signInWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      var user = await firebaseAuthService.signInWithEmailAndPassword(
+          email: email, password: password);
+      return right(
+        UserModel.fromFirebaseUser(user),
+      );
+    } on CustomExceptions catch (e) {
+      return left(ServerFailure(e.message));
+    } catch (e) {
+      log(
+        'Exception in AuthRepoImpl.signInWithEmailAndPassword :${e.toString()}',
+      );
       return left(
         ServerFailure(
           e.toString(),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
-import 'package:newsapp/Featuers/auth/presentation/view/login_view.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 import 'package:newsapp/constants.dart';
 
 class PageViewItem extends StatelessWidget {
@@ -47,7 +47,8 @@ class PageViewItem extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 Prfs.setBool(kIsOnBoardingViewSeen, true);
-                Navigator.of(context).pushReplacementNamed(LoginView.routeName);
+                Navigator.of(context)
+                    .pushReplacementNamed(SigninView.routeName);
               },
               child: const Padding(
                 padding: EdgeInsets.all(20),
