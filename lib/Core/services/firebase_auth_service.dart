@@ -87,25 +87,70 @@ class FirebaseAuthService {
   Future<User> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
+    try {
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
 
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
 
-    return (await FirebaseAuth.instance.signInWithCredential(credential)).user!;
+      return (await FirebaseAuth.instance.signInWithCredential(credential))
+          .user!;
+    } on FirebaseAuthException catch (e) {
+      log(
+        'Exception inFirebaseAuthService.signInWithEmailAndPassword :${e.toString()}',
+      );
+      if (e.code == 'account-exists-with-different-credential') {
+        throw CustomExceptions(
+          message: 'The account already exists',
+        );
+      } else {
+        throw CustomExceptions(
+          message: 'An error occurred. Please try again later.',
+        );
+      }
+    } catch (e) {
+      log(
+        'Exception inFirebaseAuthService.signInWithEmailAndPassword :${e.toString()}',
+      );
+      throw CustomExceptions(
+        message: 'An error occurred. Please try again later.',
+      );
+    }
   }
 
   Future<User> signInWithFacebook() async {
     final LoginResult loginResult = await FacebookAuth.instance.login();
 
-    final OAuthCredential facebookAuthCredential =
-        FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+    try {
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
 
-    return (await FirebaseAuth.instance
-            .signInWithCredential(facebookAuthCredential))
-        .user!;
+      return (await FirebaseAuth.instance
+              .signInWithCredential(facebookAuthCredential))
+          .user!;
+    } on FirebaseAuthException catch (e) {
+      log(
+        'Exception inFirebaseAuthService.signInWithEmailAndPassword :${e.toString()}',
+      );
+      if (e.code == 'account-exists-with-different-credential') {
+        throw CustomExceptions(
+          message: 'The account already exists',
+        );
+      } else {
+        throw CustomExceptions(
+          message: 'An error occurred. Please try again later.',
+        );
+      }
+    } catch (e) {
+      log(
+        'Exception inFirebaseAuthService.signInWithEmailAndPassword :${e.toString()}',
+      );
+      throw CustomExceptions(
+        message: 'An error occurred. Please try again later.',
+      );
+    }
   }
 }
