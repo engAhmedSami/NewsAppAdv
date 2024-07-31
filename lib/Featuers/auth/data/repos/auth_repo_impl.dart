@@ -31,7 +31,7 @@ class AuthRepoImpl extends AuthRepo {
       );
       return left(
         ServerFailure(
-          e.toString(),
+          'An error occurred. Please try again later.',
         ),
       );
     }
@@ -54,7 +54,45 @@ class AuthRepoImpl extends AuthRepo {
       );
       return left(
         ServerFailure(
-          e.toString(),
+          'An error occurred. Please try again later.',
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failures, UserEntity>> signInWithGoogle() async {
+    try {
+      var user = await firebaseAuthService.signInWithGoogle();
+      return right(
+        UserModel.fromFirebaseUser(user),
+      );
+    } catch (e) {
+      log(
+        'Exception in AuthRepoImpl.signInWithGoogle :${e.toString()}',
+      );
+      return left(
+        ServerFailure(
+          'An error occurred. Please try again later.',
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failures, UserEntity>> signInWithFacebook() async {
+    try {
+      var user = await firebaseAuthService.signInWithFacebook();
+      return right(
+        UserModel.fromFirebaseUser(user),
+      );
+    } catch (e) {
+      log(
+        'Exception in AuthRepoImpl.signInWithFacebook :${e.toString()}',
+      );
+      return left(
+        ServerFailure(
+          'An error occurred. Please try again later.',
         ),
       );
     }
