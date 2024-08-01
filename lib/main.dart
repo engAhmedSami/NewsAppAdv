@@ -39,7 +39,9 @@ class NewsApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.primaryColor,
         fontFamily: 'Montserrat',
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: AppColors.primaryColor,
+        ),
       ),
     );
   }
