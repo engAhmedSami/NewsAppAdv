@@ -20,6 +20,7 @@ class SigneupViewBodyBlockConsumer extends StatelessWidget {
             context,
             'Signup Successfully',
           );
+          Navigator.pop(context);
         }
         if (state is SignupFailure) {
           failuerTopSnackBar(
