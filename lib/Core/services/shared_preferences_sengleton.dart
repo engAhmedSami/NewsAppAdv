@@ -39,4 +39,9 @@ class UserPrefs {
 
     return value ?? '';
   }
+
+  Future<void> clearCache() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+  }
 }

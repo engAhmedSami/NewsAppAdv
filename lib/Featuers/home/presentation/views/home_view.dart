@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 import 'package:newsapp/Featuers/home/presentation/views/widget/home_view_body.dart';
 
 class HomeView extends StatelessWidget {
@@ -7,8 +8,18 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: HomeViewBody(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.popAndPushNamed(context, SigninView.routeName);
+          },
+          icon: const Icon(Icons.arrow_back_ios_new),
+        ),
+      ),
+      body: const HomeViewBody(),
     );
   }
 }

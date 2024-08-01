@@ -39,6 +39,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 height: 16,
               ),
               CustomTextFormField(
+                controller: TextEditingController(),
                 onSaved: (value) {
                   userName = value!;
                 },
@@ -49,6 +50,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 height: 16,
               ),
               CustomTextFormField(
+                controller: TextEditingController(),
                 onSaved: (value) {
                   email = value!;
                 },
@@ -59,6 +61,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 height: 16,
               ),
               PasswordField(
+                controller: TextEditingController(),
                 onSaved: (value) {
                   password = value!;
                 },
