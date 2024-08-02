@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
@@ -16,6 +14,7 @@ import 'package:newsapp/Featuers/auth/presentation/view/widget/password_field.da
 import 'package:newsapp/Featuers/auth/presentation/view/widget/remember_me.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/social_login_button.dart';
 import 'package:newsapp/constants.dart';
+import 'dart:io';
 
 class SigninViewBody extends StatefulWidget {
   const SigninViewBody({super.key});
@@ -24,121 +23,12 @@ class SigninViewBody extends StatefulWidget {
   State<SigninViewBody> createState() => _SigninViewBodyState();
 }
 
-@override
-// class _SigninViewBodyState extends State<SigninViewBody> {
-//   late String email, password;
-//   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-//   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-//   @override
-//   Widget build(BuildContext context) {
-//     return SingleChildScrollView(
-//       child: Padding(
-//         padding: const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
-//         child: Form(
-//           key: formKey,
-//           autovalidateMode: autovalidateMode,
-//           child: Column(
-//             children: [
-//               const SizedBox(height: 24),
-//               const NewsAppText(),
-//               const SizedBox(
-//                 height: 16,
-//               ),
-//               CustomTextFormField(
-//                 onSaved: (value) {
-//                   email = value!;
-//                 },
-//                 hintText: 'Email',
-//                 textInputType: TextInputType.emailAddress,
-//               ),
-//               const SizedBox(
-//                 height: 16,
-//               ),
-//               PasswordField(
-//                 onSaved: (value) {
-//                   password = value!;
-//                 },
-//               ),
-//               const SizedBox(
-//                 height: 16,
-//               ),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.end,
-//                 children: [
-//                   Text(
-//                     'Forget Password',
-//                     style: AppStyles.styleSemiBold16.copyWith(
-//                       color: AppColors.secondaryColor,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//               const SizedBox(
-//                 height: 33,
-//               ),
-//               CustomBotton(
-//                   onPressed: () {
-//                     if (formKey.currentState!.validate()) {
-//                       formKey.currentState!.save();
-//                       context.read<SigninCubit>().signIn(
-//                             email,
-//                             password,
-//                           );
-//                     } else {
-//                       autovalidateMode = AutovalidateMode.always;
-//                       setState(() {});
-//                     }
-//                   },
-//                   text: 'Login'),
-//               const SizedBox(
-//                 height: 33,
-//               ),
-//               const DontHaveAnAccountWidget(),
-//               const SizedBox(
-//                 height: 33,
-//               ),
-//               const OrDivider(),
-//               const SizedBox(
-//                 height: 16,
-//               ),
-//               SocialLoginButton(
-//                 image: Assets.imagesGoogel,
-//                 tital: 'Login with Google',
-//                 onPressed: () {
-//                   context.read<SigninCubit>().signInWithGoogle();
-//                 },
-//               ),
-//               const SizedBox(
-//                 height: 16,
-//               ),
-//               SocialLoginButton(
-//                 image: Assets.imagesApple,
-//                 tital: 'Login with Apple',
-//                 onPressed: () {},
-//               ),
-//               const SizedBox(
-//                 height: 16,
-//               ),
-//               SocialLoginButton(
-//                 image: Assets.imagesFacebook,
-//                 tital: 'Login with Facebook',
-//                 onPressed: () {
-//                   context.read<SigninCubit>().signInWithFacebook();
-//                 },
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 class _SigninViewBodyState extends State<SigninViewBody> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  late bool isRemembermeClicked = false;
+  bool isRemembermeClicked = false;
   UserPrefs userPrefs = UserPrefs();
 
   @override
@@ -194,27 +84,32 @@ class _SigninViewBodyState extends State<SigninViewBody> {
               ),
               RememberMe(
                 onChange: (value) {
-                  isRemembermeClicked = value;
+                  setState(() {
+                    isRemembermeClicked = value;
+                  });
                 },
               ),
               const SizedBox(height: 33),
               CustomBotton(
-                onPressed: () {
+                onPressed: () async {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    if (isRemembermeClicked == true) {
-                      userPrefs.writeCache(
+                    if (isRemembermeClicked) {
+                      await userPrefs.writeCache(
                           key: 'email', value: emailController.text);
-                      userPrefs.writeCache(
+                      await userPrefs.writeCache(
                           key: 'password', value: passwordController.text);
                     }
+                    await userPrefs.setRememberMe(isRemembermeClicked);
+                    await userPrefs.setLoggedIn(true);
                     context.read<SigninCubit>().signIn(
                           emailController.text,
                           passwordController.text,
                         );
                   } else {
-                    autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
+                    setState(() {
+                      autovalidateMode = AutovalidateMode.always;
+                    });
                   }
                 },
                 text: 'Login',

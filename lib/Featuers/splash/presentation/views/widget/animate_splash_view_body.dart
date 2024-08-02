@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
+import 'package:newsapp/Featuers/home/presentation/views/home_view.dart';
 import 'package:newsapp/Featuers/on_boarding/presentation/view/on_boarding_view.dart';
+
 import 'package:newsapp/Featuers/splash/presentation/views/widget/splash_view_text.dart';
 import 'package:newsapp/constants.dart';
 
@@ -42,14 +44,19 @@ class AnimatedSplashViewBodyState extends State<AnimatedSplashViewBody>
     _controller.forward();
 
     // Add listener to handle navigation upon animation completion
-    _controller.addStatusListener((status) {
+    _controller.addStatusListener((status) async {
       if (status == AnimationStatus.completed) {
-        bool isOnBoardingViewSeen =
-            Prfs.getBool(kIsOnBoardingViewSeen) ?? false;
-        if (isOnBoardingViewSeen) {
-          Navigator.pushReplacementNamed(context, SigninView.routeName);
+        bool isLoggedIn = await UserPrefs().isLoggedIn();
+        if (isLoggedIn) {
+          Navigator.pushReplacementNamed(context, HomeView.routeName);
         } else {
-          Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
+          bool isOnBoardingViewSeen =
+              Prfs.getBool(kIsOnBoardingViewSeen) ?? false;
+          if (isOnBoardingViewSeen) {
+            Navigator.pushReplacementNamed(context, SigninView.routeName);
+          } else {
+            Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
+          }
         }
       }
     });
