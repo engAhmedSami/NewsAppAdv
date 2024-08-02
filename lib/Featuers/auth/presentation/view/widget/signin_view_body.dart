@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
@@ -122,7 +124,9 @@ class _SigninViewBodyState extends State<SigninViewBody> {
               SocialLoginButton(
                 image: Assets.imagesGoogel,
                 tital: 'Login with Google',
-                onPressed: () {
+                onPressed: () async {
+                  await userPrefs.setLoggedIn(true);
+
                   context.read<SigninCubit>().signInWithGoogle();
                 },
               ),
@@ -142,7 +146,9 @@ class _SigninViewBodyState extends State<SigninViewBody> {
               SocialLoginButton(
                 image: Assets.imagesFacebook,
                 tital: 'Login with Facebook',
-                onPressed: () {
+                onPressed: () async {
+                  await userPrefs.setLoggedIn(true);
+
                   context.read<SigninCubit>().signInWithFacebook();
                 },
               ),
