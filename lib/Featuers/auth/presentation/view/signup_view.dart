@@ -4,7 +4,7 @@ import 'package:newsapp/Core/services/get_it_service.dart';
 import 'package:newsapp/Core/widget/build_app.dart';
 import 'package:newsapp/Featuers/auth/domain/repos/auth_repo.dart';
 import 'package:newsapp/Featuers/auth/presentation/signup_cubit/signup_cubit.dart';
-import 'package:newsapp/Featuers/auth/presentation/view/widget/signeup_view_body_block_consumer.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/widget/signup_view_body_block_consumer.dart';
 
 class SignupView extends StatelessWidget {
   const SignupView({super.key});
@@ -18,7 +18,7 @@ class SignupView extends StatelessWidget {
       ),
       child: Scaffold(
         appBar: buildAppBar(context, title: 'SignUp'),
-        body: const SigneupViewBodyBlockConsumer(),
+        body: const SignupViewBodyBlockConsumer(),
       ),
     );
   }

@@ -15,7 +15,7 @@ class FirebaseAuthService {
         email: email,
         password: password,
       );
-
+      await credential.user!.sendEmailVerification();
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       log(
@@ -57,6 +57,12 @@ class FirebaseAuthService {
     try {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+      if (!credential.user!.emailVerified) {
+        await _firebaseAuth.signOut();
+        throw CustomExceptions(
+          message: 'Email not verified. Please check your inbox.',
+        );
+      }
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       log(
