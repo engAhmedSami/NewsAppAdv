@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/forgot_password_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signup_view.dart';
 import 'package:newsapp/Featuers/home/presentation/views/home_view.dart';
@@ -21,6 +22,10 @@ Route<dynamic> onGenerateRoute(RouteSettings setting) {
 
     case HomeView.routeName:
       return MaterialPageRoute(builder: (context) => const HomeView());
+
+    case ForgotPasswordView.routName:
+      return MaterialPageRoute(
+          builder: (context) => const ForgotPasswordView());
 
     default:
       return MaterialPageRoute(builder: (context) => const SplashView());

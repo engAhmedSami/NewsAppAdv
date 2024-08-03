@@ -10,6 +10,7 @@ import 'package:newsapp/Core/widget/custom_botton.dart';
 import 'package:newsapp/Core/widget/custom_text_field.dart';
 import 'package:newsapp/Core/widget/news_app_text.dart';
 import 'package:newsapp/Featuers/auth/presentation/signin_cubit/signin_cubit.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/forgot_password_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/dont_have_an_account_widget.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/or_divider.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/password_field.dart';
@@ -76,10 +77,15 @@ class _SigninViewBodyState extends State<SigninViewBody> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    'Forget Password',
-                    style: AppStyles.styleMedium16.copyWith(
-                      color: AppColors.secondaryColor,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, ForgotPasswordView.routName);
+                    },
+                    child: Text(
+                      'Forget Password',
+                      style: AppStyles.styleMedium16.copyWith(
+                        color: AppColors.secondaryColor,
+                      ),
                     ),
                   ),
                 ],

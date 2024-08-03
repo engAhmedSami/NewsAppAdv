@@ -39,4 +39,16 @@ class SigninCubit extends Cubit<SigninState> {
       (success) => emit(SigninSuccess(userEntity: success)),
     );
   }
+
+  Future<void> sendPasswordResetLink(String email) async {
+    emit(SigninLoading());
+
+    final result = await authRepo.sendPasswordResetLink(email);
+
+    result.fold(
+      (failure) => emit(SigninFailure(message: failure.message)),
+      (_) => emit(SigninSuccess(
+          userEntity: UserEntity(name: '', email: email, uId: ''))),
+    );
+  }
 }

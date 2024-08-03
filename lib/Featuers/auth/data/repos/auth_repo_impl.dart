@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:newsapp/Core/errors/exceptions.dart';
 import 'package:newsapp/Core/errors/failures.dart';
@@ -95,6 +94,21 @@ class AuthRepoImpl extends AuthRepo {
           'An error occurred. Please try again later.',
         ),
       );
+    }
+  }
+
+  @override
+  Future<Either<Failures, void>> sendPasswordResetLink(String email) async {
+    try {
+      await firebaseAuthService.sendPasswordResetLink(email: email);
+      return right(null);
+    } on CustomExceptions catch (e) {
+      log('FirebaseAuthException in AuthRepoImpl.sendPasswordResetLink :${e.toString()}');
+
+      return left(ServerFailure(e.message));
+    } catch (e) {
+      log('Exception in AuthRepoImpl.sendPasswordResetLink :${e.toString()}');
+      return left(ServerFailure('An error occurred. Please try again later.'));
     }
   }
 }

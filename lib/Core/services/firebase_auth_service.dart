@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newsapp/Core/errors/exceptions.dart';
 
 class FirebaseAuthService {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   Future<User> createUserWithEmailAndPassword(
       {required String email, required String password}) async {
     try {
@@ -27,6 +28,10 @@ class FirebaseAuthService {
       } else if (e.code == 'email-already-in-use') {
         throw CustomExceptions(
           message: 'The account already exists for that email.',
+        );
+      } else if (e.code == 'invalid-email') {
+        throw CustomExceptions(
+          message: 'The email address is badly formatted.',
         );
       } else if (e.code == 'network-request-failed') {
         throw CustomExceptions(
@@ -151,6 +156,24 @@ class FirebaseAuthService {
       throw CustomExceptions(
         message: 'An error occurred. Please try again later.',
       );
+    }
+  }
+
+  Future<void> sendPasswordResetLink({required String email}) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      log('FirebaseAuthException: ${e.toString()}');
+      if (e.code == 'invalid-email') {
+        throw CustomExceptions(
+            message: 'The email address is badly formatted.');
+      } else {
+        throw CustomExceptions(message: e.message ?? 'An error occurred.');
+      }
+    } catch (e) {
+      log('Exception: ${e.toString()}');
+      throw CustomExceptions(
+          message: 'An error occurred. Please try again later.');
     }
   }
 }
