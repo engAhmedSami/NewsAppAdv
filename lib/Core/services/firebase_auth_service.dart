@@ -72,10 +72,6 @@ class FirebaseAuthService {
         throw CustomExceptions(
           message: 'Wrong Email or Password',
         );
-      } else if (e.code == 'invalid-credential') {
-        throw CustomExceptions(
-          message: 'Wrong Email or Password',
-        );
       } else if (e.code == 'network-request-failed') {
         throw CustomExceptions(
           message: 'No internet connection. Please try again later.',

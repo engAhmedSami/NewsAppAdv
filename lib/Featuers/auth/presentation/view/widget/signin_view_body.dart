@@ -155,6 +155,8 @@
 //                 onPressed: () async {
 //                   await userPrefs.setLoggedIn(true);
 
+// ignore_for_file: use_build_context_synchronously
+
 //                   context.read<SigninCubit>().signInWithFacebook();
 //                 },
 //               ),
