@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:newsapp/Core/services/firebase_auth_service.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 import 'package:newsapp/Core/utils/app_colors.dart';
@@ -13,7 +14,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserPrefs userPrefs = UserPrefs();
-
+    FirebaseAuthService firebaseAuthService = FirebaseAuthService();
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -21,7 +22,7 @@ class HomeView extends StatelessWidget {
           onPressed: () async {
             bool rememberMe = await userPrefs.isRememberMe();
             await userPrefs.clearLoginState(rememberMe: rememberMe);
-            await userPrefs.setLoggedIn(false);
+            await firebaseAuthService.signOut();
             Navigator.of(context).pushReplacementNamed(SigninView.routeName);
           },
           icon: const Icon(Icons.logout),

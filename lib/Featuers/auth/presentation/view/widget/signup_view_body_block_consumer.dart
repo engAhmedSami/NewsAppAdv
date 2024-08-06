@@ -21,11 +21,12 @@ class SignupViewBodyBlockConsumer extends StatelessWidget {
             context,
             'Account created successfully, verify your account  ',
           );
+          Navigator.pushReplacementNamed(
+            context,
+            VerfiedEmailView.routeName,
+          );
         }
-        Navigator.pushReplacementNamed(
-          context,
-          VerfiedEmailView.routeName,
-        );
+
         if (state is SignupFailure) {
           failuerTopSnackBar(
             context,

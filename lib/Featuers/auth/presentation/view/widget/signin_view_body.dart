@@ -169,6 +169,7 @@
 // }
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsapp/Core/services/firebase_auth_service.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
 import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Core/utils/app_images.dart';
@@ -200,6 +201,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isRemembermeClicked = false;
   UserPrefs userPrefs = UserPrefs();
+  FirebaseAuthService firebaseAuthService = FirebaseAuthService();
 
   @override
   void initState() {
@@ -276,7 +278,6 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                           key: 'password', value: passwordController.text);
                     }
                     await userPrefs.setRememberMe(isRemembermeClicked);
-                    await userPrefs.setLoggedIn(true);
                     context.read<SigninCubit>().signIn(
                           emailController.text,
                           passwordController.text,
@@ -298,8 +299,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                 image: Assets.imagesGoogel,
                 tital: 'Login with Google',
                 onPressed: () async {
-                  await userPrefs.setLoggedIn(true);
-
+                  await firebaseAuthService.signOut();
                   context.read<SigninCubit>().signInWithGoogle();
                 },
               ),
@@ -320,8 +320,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                 image: Assets.imagesFacebook,
                 tital: 'Login with Facebook',
                 onPressed: () async {
-                  await userPrefs.setLoggedIn(true);
-
+                  await firebaseAuthService.signOut();
                   context.read<SigninCubit>().signInWithFacebook();
                 },
               ),
