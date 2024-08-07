@@ -1,14 +1,45 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/Core/helper_function/failuer_top_snak_bar.dart';
 import 'package:newsapp/Core/helper_function/scccess_top_snak_bar.dart';
+import 'package:newsapp/Core/utils/app_images.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 
-class VerfiedEmailViewBody extends StatelessWidget {
+class VerfiedEmailViewBody extends StatefulWidget {
   const VerfiedEmailViewBody({super.key});
+
+  @override
+  VerfiedEmailViewBodyState createState() => VerfiedEmailViewBodyState();
+}
+
+class VerfiedEmailViewBodyState extends State<VerfiedEmailViewBody> {
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) async {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        await user.reload();
+        if (user.emailVerified) {
+          timer.cancel();
+          Navigator.of(context).pushReplacementNamed(SigninView.routeName);
+        }
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +49,10 @@ class VerfiedEmailViewBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset(
+              Assets.imagesMail,
+              height: 175,
+            ),
             const Text(
               'Please verify your email address.',
               style: AppStyles.styleSemiBold20,
@@ -27,33 +62,29 @@ class VerfiedEmailViewBody extends StatelessWidget {
             CustomBotton(
                 onPressed: () => resendVerificationEmail(context),
                 text: 'Resend Verification Email'),
-            // ElevatedButton(
-            //   onPressed: () => resendVerificationEmail(context),
-            //   child: const Text('Resend Verification Email'),
-            // ),
           ],
         ),
       ),
     );
   }
-}
 
-Future<void> resendVerificationEmail(BuildContext context) async {
-  User? user = FirebaseAuth.instance.currentUser;
-  if (user != null && !user.emailVerified) {
-    await user.sendEmailVerification();
-    succesTopSnackBar(context, 'Email verification link has been sent.');
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   const SnackBar(
-    //     content: Text('Email verification link has been sent.'),
-    //   ),
-    // );
-  } else {
-    failuerTopSnackBar(context, 'Unable to send verification email.');
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   const SnackBar(
-    //     content: Text('Unable to send verification email.'),
-    //   ),
-    // );
+  Future<void> resendVerificationEmail(BuildContext context) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null && !user.emailVerified) {
+      await user.sendEmailVerification();
+      succesTopSnackBar(context, 'Email verification link has been sent.');
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(
+      //     content: Text('Email verification link has been sent.'),
+      //   ),
+      // );
+    } else {
+      failuerTopSnackBar(context, 'Unable to send verification email.');
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(
+      //     content: Text('Unable to send verification email.'),
+      //   ),
+      // );
+    }
   }
 }

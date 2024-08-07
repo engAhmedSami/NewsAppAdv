@@ -37,6 +37,10 @@ class Assets {
   /// assets/images/image2_resized.png
   static const String imagesImage2Resized = "assets/images/image2_resized.png";
 
+  /// Assets for imagesMail
+  /// assets/images/mail.png
+  static const String imagesMail = "assets/images/mail.png";
+
   /// Assets for imagesNewsLogo
   /// assets/images/news_logo.png
   static const String imagesNewsLogo = "assets/images/news_logo.png";
