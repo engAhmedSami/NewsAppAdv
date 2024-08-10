@@ -7,11 +7,12 @@ class PasswordField extends StatefulWidget {
     this.onSaved,
     required this.controller,
     required this.hintText,
+    this.validator,
   });
   final void Function(String?)? onSaved;
   final TextEditingController controller;
   final String hintText;
-
+  final FormFieldValidator<String>? validator;
   @override
   State<PasswordField> createState() => _PasswordFieldState();
 }
@@ -27,6 +28,7 @@ class _PasswordFieldState extends State<PasswordField> {
       onSaved: widget.onSaved,
       hintText: widget.hintText,
       textInputType: TextInputType.visiblePassword,
+      validator: widget.validator,
       suffixIcon: GestureDetector(
         onTap: () {
           obobscureText = !obobscureText;

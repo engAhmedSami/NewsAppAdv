@@ -47,6 +47,12 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 },
                 hintText: 'Full Name',
                 textInputType: TextInputType.name,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your name';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
               CustomTextFormField(
@@ -56,6 +62,16 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 },
                 hintText: 'Email',
                 textInputType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  final emailRegExp = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
+                  if (!emailRegExp.hasMatch(value)) {
+                    return 'Please enter a valid email address';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
               PasswordField(
@@ -64,6 +80,25 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 onSaved: (value) {
                   password = value!;
                 },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  if (value.length < 8) {
+                    return 'Password must be at least 8 characters';
+                  }
+                  if (!RegExp(r'(?=.*?[A-Z])').hasMatch(value)) {
+                    return 'Password must contain at least one uppercase letter';
+                  }
+                  if (!RegExp(r'(?=.*?[0-9])').hasMatch(value)) {
+                    return 'Password must contain at least one digit';
+                  }
+                  if (!RegExp(r'(?=.*?[!@#$%^&*(),.?":{}|<>])')
+                      .hasMatch(value)) {
+                    return 'Password must contain at least one special character';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
               PasswordField(
@@ -71,6 +106,15 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 controller: confirmPasswordController,
                 onSaved: (value) {
                   confirmPassword = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please confirm your password';
+                  }
+                  if (value != passwordController.text) {
+                    return 'Passwords do not match';
+                  }
+                  return null;
                 },
               ),
               const SizedBox(height: 16),
@@ -84,22 +128,14 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     if (isTermsAccepted) {
-                      if (passwordController.text ==
-                          confirmPasswordController.text) {
-                        formKey.currentState!.save();
-                        context
-                            .read<SignupCubit>()
-                            .createUserWithEmailAndPassword(
-                              email,
-                              password,
-                              userName,
-                            );
-                      } else {
-                        failuerTopSnackBar(
-                          context,
-                          'Passwords do not match',
-                        );
-                      }
+                      formKey.currentState!.save();
+                      context
+                          .read<SignupCubit>()
+                          .createUserWithEmailAndPassword(
+                            email,
+                            password,
+                            userName,
+                          );
                     } else {
                       failuerTopSnackBar(
                         context,

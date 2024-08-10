@@ -11,6 +11,7 @@ class CustomTextFormField extends StatelessWidget {
     this.onSaved,
     this.obobscureText = false,
     required this.controller,
+    this.validator,
   });
   final String hintText;
   final TextInputType textInputType;
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatelessWidget {
   final void Function(String?)? onSaved;
   final bool obobscureText;
   final TextEditingController controller;
+  final FormFieldValidator<String>? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +27,7 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       obscureText: obobscureText,
       onSaved: onSaved,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'This field is required';
-        }
-        return null;
-      },
+      validator: validator,
       keyboardType: textInputType,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
