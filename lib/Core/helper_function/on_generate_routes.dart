@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/forgot_password_view.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/phone_signin_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signup_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/verfied_email_view.dart';
@@ -29,7 +30,8 @@ Route<dynamic> onGenerateRoute(RouteSettings setting) {
           builder: (context) => const ForgotPasswordView());
     case VerfiedEmailView.routeName:
       return MaterialPageRoute(builder: (context) => const VerfiedEmailView());
-
+    case PhoneSigninView.routeName:
+      return MaterialPageRoute(builder: (context) => const PhoneSigninView());
     default:
       return MaterialPageRoute(builder: (context) => const SplashView());
   }
