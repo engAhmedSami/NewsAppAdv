@@ -32,7 +32,7 @@ abstract class AppStyles {
 
   static const TextStyle styleboild13 = TextStyle(
     color: Colors.black,
-    fontSize: 13,
+    fontSize: 12,
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w700,
     height: 0,

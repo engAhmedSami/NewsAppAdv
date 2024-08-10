@@ -23,7 +23,7 @@ class VerfiedEmailViewBodyState extends State<VerfiedEmailViewBody> {
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 3), (timer) async {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) async {
       User? user = FirebaseAuth.instance.currentUser;
       if (user != null) {
         await user.reload();
