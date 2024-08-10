@@ -26,22 +26,20 @@ class _RememberMeState extends State<RememberMe> {
           isChecked: isTearmAccepted,
         ),
         const SizedBox(
-          width: 16,
+          width: 4,
         ),
-        Expanded(
-          child: Text.rich(
-            TextSpan(
-              children: [
-                TextSpan(
-                  text: 'Remember me',
-                  style: AppStyles.styleSemiBold16.copyWith(
-                    color: AppColors.secondaryColor,
-                  ),
+        Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: 'Remember me',
+                style: AppStyles.styleMedium14.copyWith(
+                  color: AppColors.secondaryColor,
                 ),
-              ],
-            ),
-            textAlign: TextAlign.left,
+              ),
+            ],
           ),
+          textAlign: TextAlign.left,
         )
       ],
     );

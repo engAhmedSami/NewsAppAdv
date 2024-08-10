@@ -61,6 +61,17 @@
 //                 height: 16,
 //               ),
 //               PasswordField(
+//                 hintText: 'Password',
+//                 controller: TextEditingController(),
+//                 onSaved: (value) {
+//                   password = value!;
+//                 },
+//               ),
+//               const SizedBox(
+//                 height: 16,
+//               ),
+//               PasswordField(
+//                 hintText: 'Confirm Password',
 //                 controller: TextEditingController(),
 //                 onSaved: (value) {
 //                   password = value!;
@@ -135,8 +146,12 @@ class SignupViewBody extends StatefulWidget {
 class _SignupViewBodyState extends State<SignupViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  late String email, userName, password;
+  late String email, userName, password, confirmPassword;
   late bool isTermsAccepted = false;
+
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -150,9 +165,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
             children: [
               const SizedBox(height: 24),
               const NewsAppText(),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               CustomTextFormField(
                 controller: TextEditingController(),
                 onSaved: (value) {
@@ -161,9 +174,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 hintText: 'Full Name',
                 textInputType: TextInputType.name,
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               CustomTextFormField(
                 controller: TextEditingController(),
                 onSaved: (value) {
@@ -172,38 +183,49 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 hintText: 'Email',
                 textInputType: TextInputType.emailAddress,
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               PasswordField(
-                controller: TextEditingController(),
+                hintText: 'Password',
+                controller: passwordController,
                 onSaved: (value) {
                   password = value!;
                 },
               ),
-              const SizedBox(
-                height: 16,
+              const SizedBox(height: 16),
+              PasswordField(
+                hintText: 'Confirm Password',
+                controller: confirmPasswordController,
+                onSaved: (value) {
+                  confirmPassword = value!;
+                },
               ),
+              const SizedBox(height: 16),
               TermsAndCondition(
                 onChange: (value) {
                   isTermsAccepted = value;
                 },
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 140),
               CustomBotton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     if (isTermsAccepted) {
-                      formKey.currentState!.save();
-                      context
-                          .read<SignupCubit>()
-                          .createUserWithEmailAndPassword(
-                            email,
-                            password,
-                            userName,
-                          );
+                      if (passwordController.text ==
+                          confirmPasswordController.text) {
+                        formKey.currentState!.save();
+                        context
+                            .read<SignupCubit>()
+                            .createUserWithEmailAndPassword(
+                              email,
+                              password,
+                              userName,
+                            );
+                      } else {
+                        failuerTopSnackBar(
+                          context,
+                          'Passwords do not match',
+                        );
+                      }
                     } else {
                       failuerTopSnackBar(
                         context,
@@ -217,10 +239,8 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 },
                 text: 'SignUp',
               ),
-              const SizedBox(
-                height: 26,
-              ),
-              const HaveAnAccountWidget()
+              const SizedBox(height: 16),
+              const HaveAnAccountWidget(),
             ],
           ),
         ),

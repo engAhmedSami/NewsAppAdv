@@ -48,7 +48,7 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
                     .read<SigninCubit>()
                     .sendPasswordResetLink(emailController.text);
               },
-              text: 'Forgot Password')
+              text: 'Confirm')
         ],
       ),
     );
