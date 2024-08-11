@@ -11,19 +11,20 @@ class VerfiedEmailView extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBarC(
         context,
+        tital: 'Verify Email',
       ),
       body: const VerfiedEmailViewBody(),
     );
   }
 }
 
-AppBar buildAppBarC(context) {
+AppBar buildAppBarC(context, {required String tital}) {
   return AppBar(
     automaticallyImplyLeading: false,
     backgroundColor: AppColors.primaryColor,
     centerTitle: true,
     title: Text(
-      'Email Verification',
+      tital,
       textAlign: TextAlign.center,
       style: AppStyles.styleSemiBold24.copyWith(
         color: AppColors.secondaryColor,

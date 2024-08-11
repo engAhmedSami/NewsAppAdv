@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:newsapp/Core/helper_function/failuer_top_snak_bar.dart';
 import 'package:newsapp/Core/helper_function/scccess_top_snak_bar.dart';
 import 'package:newsapp/Core/utils/app_images.dart';
@@ -49,14 +50,13 @@ class VerfiedEmailViewBodyState extends State<VerfiedEmailViewBody> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              Assets.imagesMail,
-              height: 175,
-            ),
             const Text(
               'Please verify your email address.',
               style: AppStyles.styleSemiBold20,
               textAlign: TextAlign.center,
+            ),
+            SvgPicture.asset(
+              Assets.imagesConfirmed,
             ),
             const SizedBox(height: 20),
             CustomBotton(

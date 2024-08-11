@@ -8,6 +8,8 @@ import 'package:newsapp/Featuers/home/presentation/views/home_view.dart';
 import 'package:newsapp/Featuers/on_boarding/presentation/view/on_boarding_view.dart';
 import 'package:newsapp/Featuers/splash/presentation/views/splash_view.dart';
 
+import '../../Featuers/auth/presentation/view/widget/otp_phone_body.dart';
+
 Route<dynamic> onGenerateRoute(RouteSettings setting) {
   switch (setting.name) {
     case SplashView.routeName:
@@ -32,6 +34,8 @@ Route<dynamic> onGenerateRoute(RouteSettings setting) {
       return MaterialPageRoute(builder: (context) => const VerfiedEmailView());
     case PhoneSigninView.routeName:
       return MaterialPageRoute(builder: (context) => const PhoneSigninView());
+    case OtpPhoneBody.routeName:
+      return MaterialPageRoute(builder: (context) => const OtpPhoneBody());
     default:
       return MaterialPageRoute(builder: (context) => const SplashView());
   }

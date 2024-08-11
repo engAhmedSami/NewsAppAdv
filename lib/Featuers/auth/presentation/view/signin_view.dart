@@ -27,6 +27,7 @@ class SigninView extends StatelessWidget {
 
   AppBar buildAppBar() {
     return AppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: AppColors.primaryColor,
       centerTitle: true,
       title: Text(
