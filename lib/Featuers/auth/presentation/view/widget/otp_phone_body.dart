@@ -24,10 +24,12 @@ class OtpPhoneBody extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
           child: Column(
             children: [
+              const SizedBox(height: 30),
               SvgPicture.asset(
                 Assets.imagesOtp,
+                height: 350,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 50),
               OtpTextField(
                 enabledBorderColor: AppColors.secondaryColor,
                 fieldWidth: 50,
@@ -46,24 +48,9 @@ class OtpPhoneBody extends StatelessWidget {
                   log("verificationCode $verificationCode");
                   Navigator.pushNamed(context, VerfiedEmailView.routeName);
                 },
-              )
-
-              // CustomTextFormField(
-              //   controller: TextEditingController(),
-              //   hintText: 'Enter your code',
-              //   onSaved: (value) {},
-              //   validator: (value) {
-              //     if (value == null || value.isEmpty) {
-              //       return 'Please enter your code';
-              //     }
-
-              //     return null;
-              //   },
-              //   textInputType: TextInputType.number,
-              // ),
-              ,
+              ),
               const SizedBox(
-                height: 40,
+                height: 90,
               ),
               CustomBotton(
                 onPressed: () {},

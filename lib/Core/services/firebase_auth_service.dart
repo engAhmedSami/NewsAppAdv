@@ -169,6 +169,8 @@ class FirebaseAuthService {
       if (e.code == 'invalid-email') {
         throw CustomExceptions(
             message: 'The email address is badly formatted.');
+      } else if (e.code == 'channel-error') {
+        throw CustomExceptions(message: 'Enter your Email');
       } else {
         throw CustomExceptions(message: e.message ?? 'An error occurred.');
       }

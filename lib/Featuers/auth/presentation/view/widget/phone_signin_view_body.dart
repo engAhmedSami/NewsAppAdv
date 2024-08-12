@@ -16,9 +16,15 @@ class PhoneSigninViewBody extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
         child: Column(
           children: [
-            SvgPicture.asset(Assets.imagesSigninPhone),
             const SizedBox(
-              height: 20,
+              height: 30,
+            ),
+            SvgPicture.asset(
+              Assets.imagesSigninPhone,
+              height: 350,
+            ),
+            const SizedBox(
+              height: 50,
             ),
             CustomTextFormField(
               controller: TextEditingController(),
@@ -38,7 +44,7 @@ class PhoneSigninViewBody extends StatelessWidget {
               },
             ),
             const SizedBox(
-              height: 40,
+              height: 90,
             ),
             CustomBotton(
               onPressed: () {

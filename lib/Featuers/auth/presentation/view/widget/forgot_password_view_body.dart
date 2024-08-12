@@ -32,6 +32,7 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(height: 30),
             SvgPicture.asset(
               Assets.imagesForgotPassword,
               height: 400,
@@ -47,7 +48,7 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
               textInputType: TextInputType.emailAddress,
               controller: emailController,
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 45),
             CustomBotton(
                 onPressed: () {
                   context
