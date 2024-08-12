@@ -12,13 +12,13 @@ class OnBoardingPageView extends StatelessWidget {
       controller: pageController,
       children: const [
         PageViewItem(
-          image: Assets.imagesImage1Resized,
+          image: Assets.imagesOnbording1,
           subtitle:
               'Welcome to News App, your reliable source for up-to-date news. Get instant alerts, personalized topics, and exclusive reports. Stay informed effortlessly!',
           isViable: true,
         ),
         PageViewItem(
-          image: Assets.imagesImage2Resized,
+          image: Assets.imagesOnbording3,
           subtitle:
               'Stay ahead with real-time updates and breaking news. Customize your feed to follow the topics you care about most',
           isViable: false,
