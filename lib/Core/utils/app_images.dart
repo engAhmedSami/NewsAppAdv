@@ -45,6 +45,18 @@ class Assets {
   /// assets/images/newsicon-removebg-preview.png
   static const String imagesNewsiconRemovebgPreview = "assets/images/newsicon-removebg-preview.png";
 
+  /// Assets for imagesOnbording1
+  /// assets/images/onbording1.png
+  static const String imagesOnbording1 = "assets/images/onbording1.png";
+
+  /// Assets for imagesOnbording2
+  /// assets/images/onbording2.jpg
+  static const String imagesOnbording2 = "assets/images/onbording2.jpg";
+
+  /// Assets for imagesOnbording3
+  /// assets/images/onbording3.png
+  static const String imagesOnbording3 = "assets/images/onbording3.png";
+
   /// Assets for imagesOtp
   /// assets/images/otp.svg
   static const String imagesOtp = "assets/images/otp.svg";

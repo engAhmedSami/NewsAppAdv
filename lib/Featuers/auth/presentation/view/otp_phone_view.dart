@@ -12,7 +12,18 @@ class OtpPhoneView extends StatelessWidget {
         context,
         tital: 'Otp Phone',
       ),
-      body: const OtpPhoneViewBody(),
+      body: const OtpPhoneViewBodyBlocConsumer(),
     );
+  }
+}
+
+class OtpPhoneViewBodyBlocConsumer extends StatelessWidget {
+  const OtpPhoneViewBodyBlocConsumer({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const OtpPhoneViewBody();
   }
 }
