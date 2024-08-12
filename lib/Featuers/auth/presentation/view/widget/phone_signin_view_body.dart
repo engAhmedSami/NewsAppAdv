@@ -7,7 +7,7 @@ import 'package:newsapp/Core/utils/app_images.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
 import 'package:newsapp/Core/widget/custom_text_field.dart';
-import 'package:newsapp/Featuers/auth/presentation/view/widget/otp_phone_body.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/otp_phone_view.dart';
 import 'package:newsapp/constants.dart';
 
 class PhoneSigninViewBody extends StatefulWidget {
@@ -106,7 +106,7 @@ class PhoneSigninViewBodyState extends State<PhoneSigninViewBody> {
             ),
             CustomBotton(
               onPressed: () {
-                Navigator.pushNamed(context, OtpPhoneBody.routeName);
+                Navigator.pushNamed(context, OtpPhoneView.routeName);
               },
               text: 'Sign In',
             )

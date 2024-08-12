@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/forgot_password_view.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/otp_phone_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/phone_signin_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signup_view.dart';
@@ -7,8 +8,6 @@ import 'package:newsapp/Featuers/auth/presentation/view/verfied_email_view.dart'
 import 'package:newsapp/Featuers/home/presentation/views/home_view.dart';
 import 'package:newsapp/Featuers/on_boarding/presentation/view/on_boarding_view.dart';
 import 'package:newsapp/Featuers/splash/presentation/views/splash_view.dart';
-
-import '../../Featuers/auth/presentation/view/widget/otp_phone_body.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings setting) {
   switch (setting.name) {
@@ -34,8 +33,8 @@ Route<dynamic> onGenerateRoute(RouteSettings setting) {
       return MaterialPageRoute(builder: (context) => const VerfiedEmailView());
     case PhoneSigninView.routeName:
       return MaterialPageRoute(builder: (context) => const PhoneSigninView());
-    case OtpPhoneBody.routeName:
-      return MaterialPageRoute(builder: (context) => const OtpPhoneBody());
+    case OtpPhoneView.routeName:
+      return MaterialPageRoute(builder: (context) => const OtpPhoneView());
     default:
       return MaterialPageRoute(builder: (context) => const SplashView());
   }
