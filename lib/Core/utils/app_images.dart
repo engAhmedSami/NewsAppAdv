@@ -9,17 +9,9 @@ class Assets {
   /// assets/images/Check.svg
   static const String imagesCheck = "assets/images/Check.svg";
 
-  /// Assets for imagesConfirmed
-  /// assets/images/Confirmed.svg
-  static const String imagesConfirmed = "assets/images/Confirmed.svg";
-
   /// Assets for imagesFacebook
   /// assets/images/facebook.svg
   static const String imagesFacebook = "assets/images/facebook.svg";
-
-  /// Assets for imagesForgotPassword
-  /// assets/images/Forgot_password.svg
-  static const String imagesForgotPassword = "assets/images/Forgot_password.svg";
 
   /// Assets for imagesGoogel
   /// assets/images/googel.svg
@@ -45,32 +37,8 @@ class Assets {
   /// assets/images/newsicon-removebg-preview.png
   static const String imagesNewsiconRemovebgPreview = "assets/images/newsicon-removebg-preview.png";
 
-  /// Assets for imagesOnbording1
-  /// assets/images/onbording1.png
-  static const String imagesOnbording1 = "assets/images/onbording1.png";
-
-  /// Assets for imagesOnbording2
-  /// assets/images/onbording2.jpg
-  static const String imagesOnbording2 = "assets/images/onbording2.jpg";
-
-  /// Assets for imagesOnbording3
-  /// assets/images/onbording3.png
-  static const String imagesOnbording3 = "assets/images/onbording3.png";
-
-  /// Assets for imagesOtp
-  /// assets/images/otp.svg
-  static const String imagesOtp = "assets/images/otp.svg";
-
   /// Assets for imagesPhone
   /// assets/images/phone.svg
   static const String imagesPhone = "assets/images/phone.svg";
-
-  /// Assets for imagesSigninPhone
-  /// assets/images/Signin_phone.svg
-  static const String imagesSigninPhone = "assets/images/Signin_phone.svg";
-
-  /// Assets for imagesTwoFactorAuthentication
-  /// assets/images/Two_factor_authentication.svg
-  static const String imagesTwoFactorAuthentication = "assets/images/Two_factor_authentication.svg";
 }
 

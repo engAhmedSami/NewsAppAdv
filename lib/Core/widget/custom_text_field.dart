@@ -12,13 +12,10 @@ class CustomTextFormField extends StatelessWidget {
     this.obobscureText = false,
     required this.controller,
     this.validator,
-    this.prefixIcon,
   });
   final String hintText;
   final TextInputType textInputType;
   final Widget? suffixIcon;
-  final Widget? prefixIcon;
-
   final void Function(String?)? onSaved;
   final bool obobscureText;
   final TextEditingController controller;
@@ -27,14 +24,12 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: AppStyles.styleSemiBold16,
       controller: controller,
       obscureText: obobscureText,
       onSaved: onSaved,
       validator: validator,
       keyboardType: textInputType,
       decoration: InputDecoration(
-        prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         hintText: hintText,
         hintStyle: AppStyles.styleMedium16.copyWith(

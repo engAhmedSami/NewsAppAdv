@@ -33,7 +33,7 @@ class PageViewItem extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
               child: Text(
                 subtitle,
-                style: AppStyles.styleSemiBold16,
+                style: AppStyles.styleMedium16,
                 textAlign: TextAlign.center,
               ),
             ),

@@ -10,7 +10,6 @@ class OtpPhoneView extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBarC(
         context,
-        tital: 'Otp Phone',
       ),
       body: const OtpPhoneViewBodyBlocConsumer(),
     );
