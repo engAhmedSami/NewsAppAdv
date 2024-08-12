@@ -9,6 +9,7 @@ class OtpPhoneView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBarC(
+        title: 'OTP Verification',
         context,
       ),
       body: const OtpPhoneViewBodyBlocConsumer(),

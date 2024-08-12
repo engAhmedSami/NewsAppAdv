@@ -5,7 +5,7 @@ import 'widget/phone_signin_view_body.dart';
 
 class PhoneSigninView extends StatelessWidget {
   const PhoneSigninView({super.key});
-  static const routeName = 'Signin phone';
+  static const routeName = 'Signinphone';
 
   @override
   Widget build(BuildContext context) {

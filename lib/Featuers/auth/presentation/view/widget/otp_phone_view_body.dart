@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_svg/svg.dart';
+import 'package:newsapp/Core/utils/app_colors.dart';
+import 'package:newsapp/Core/utils/app_images.dart';
+import 'package:newsapp/Core/utils/app_styles.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
 import 'package:newsapp/constants.dart';
+import 'package:pinput/pinput.dart';
 
 class OtpPhoneViewBody extends StatefulWidget {
   const OtpPhoneViewBody({super.key});
@@ -23,32 +27,47 @@ class _OtpPhoneViewBodyState extends State<OtpPhoneViewBody> {
           child: Column(
             children: [
               const SizedBox(height: 30),
-              // SvgPicture.asset(
-              //   Assets.imagesOtp,
-              //   height: 350,
-              // ),
+              SvgPicture.asset(
+                Assets.imagesOtp,
+                height: 350,
+              ),
               const SizedBox(height: 50),
-              // OtpTextField(
-              //   enabledBorderColor: AppColors.secondaryColor,
-              //   fieldWidth: 50,
-              //   numberOfFields: 6,
-              //   showFieldAsBox: true,
-              //   onCodeChanged: (String code) {
-              //     log("code $code");
-              //     // if (code.length == 6)
-              //     //   Navigator.pushNamed(context, VerfiedEmailView.routeName);
-
-              //     // setState(() {
-              //     //   _code = code;
-              //     // });
-              //   },
-              //   onSubmit: (String verificationCode) {
-              //     log("verificationCode $verificationCode");
-              //   },
-              // ),
-              // const SizedBox(
-              //   height: 90,
-              // ),
+              Pinput(
+                defaultPinTheme: PinTheme(
+                  width: 56,
+                  height: 56,
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryColor,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      width: 1,
+                      color: AppColors.secondaryColor,
+                    ),
+                  ),
+                ),
+                length: 6,
+                showCursor: true,
+                onCompleted: (value) {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                  }
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Enter OTP';
+                  }
+                  return null;
+                },
+                autofocus: true,
+                onChanged: (value) {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 55,
+              ),
               CustomBotton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
@@ -56,6 +75,22 @@ class _OtpPhoneViewBodyState extends State<OtpPhoneViewBody> {
                   }
                 },
                 text: 'Sign In',
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Text(
+                'Didn\'t receive code ?',
+                style: AppStyles.styleMedium14
+                    .copyWith(color: AppColors.secondaryColor),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Resend',
+                  style: AppStyles.styleSemiBold16
+                      .copyWith(color: AppColors.secondaryColor),
+                ),
               ),
             ],
           ),
