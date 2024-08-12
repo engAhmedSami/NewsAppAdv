@@ -1,13 +1,26 @@
+import 'dart:developer';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Core/utils/app_images.dart';
+import 'package:newsapp/Core/utils/app_styles.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
 import 'package:newsapp/Core/widget/custom_text_field.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/otp_phone_body.dart';
 import 'package:newsapp/constants.dart';
 
-class PhoneSigninViewBody extends StatelessWidget {
+class PhoneSigninViewBody extends StatefulWidget {
   const PhoneSigninViewBody({super.key});
+
+  @override
+  PhoneSigninViewBodyState createState() => PhoneSigninViewBodyState();
+}
+
+class PhoneSigninViewBodyState extends State<PhoneSigninViewBody> {
+  String countryCode = '+20';
+  String countryFlag = '🇪🇬';
+  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +40,52 @@ class PhoneSigninViewBody extends StatelessWidget {
               height: 50,
             ),
             CustomTextFormField(
-              controller: TextEditingController(),
+              prefixIcon: Padding(
+                padding: const EdgeInsets.only(top: 12, left: 8, bottom: 14),
+                child: GestureDetector(
+                  onTap: () {
+                    showCountryPicker(
+                      context: context,
+                      countryListTheme: const CountryListThemeData(
+                        bottomSheetHeight: 450,
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(24),
+                        ),
+                        backgroundColor: AppColors.primaryColor,
+                        textStyle: AppStyles.styleSemiBold16,
+                      ),
+                      onSelect: (Country country) {
+                        setState(() {
+                          countryCode = '+${country.phoneCode}';
+                          countryFlag = country.flagEmoji;
+                        });
+                        log('Selected country: ${country.displayName}');
+                      },
+                    );
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        countryFlag,
+                        style: const TextStyle(fontSize: 24),
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        countryCode,
+                        style: AppStyles.styleSemiBold20.copyWith(
+                          color: AppColors.secondaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              controller: phoneController,
               hintText: 'Enter your phone number',
               textInputType: TextInputType.phone,
               onSaved: (value) {},
@@ -56,5 +114,11 @@ class PhoneSigninViewBody extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    phoneController.dispose();
+    super.dispose();
   }
 }
