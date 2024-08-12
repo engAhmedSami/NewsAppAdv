@@ -13,7 +13,6 @@ import 'package:newsapp/Core/widget/news_app_text.dart';
 import 'package:newsapp/Core/widget/under_line.dart';
 import 'package:newsapp/Featuers/auth/presentation/signin_cubit/signin_cubit.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/forgot_password_view.dart';
-import 'package:newsapp/Featuers/auth/presentation/view/phone_signin_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/dont_have_an_account_widget.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/or_divider.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/password_field.dart';
@@ -165,9 +164,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
               ),
               const SizedBox(height: 16),
               PhoneLoginButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, PhoneSigninView.routeName);
-                },
+                onPressed: () {},
               )
             ],
           ),
