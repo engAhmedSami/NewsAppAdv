@@ -12,18 +12,7 @@ class OtpPhoneView extends StatelessWidget {
         title: 'OTP Verification',
         context,
       ),
-      body: const OtpPhoneViewBodyBlocConsumer(),
+      body: const OtpPhoneViewBody(),
     );
-  }
-}
-
-class OtpPhoneViewBodyBlocConsumer extends StatelessWidget {
-  const OtpPhoneViewBodyBlocConsumer({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const OtpPhoneViewBody();
   }
 }

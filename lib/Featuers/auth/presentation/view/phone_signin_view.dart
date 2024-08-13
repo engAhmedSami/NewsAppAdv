@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Core/widget/build_app.dart';
-
 import 'widget/phone_signin_view_body.dart';
 
 class PhoneSigninView extends StatelessWidget {
