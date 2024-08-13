@@ -1,14 +1,24 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Core/utils/app_images.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
+import 'package:newsapp/Featuers/home/presentation/views/home_view.dart';
 import 'package:newsapp/constants.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpPhoneViewBody extends StatefulWidget {
-  const OtpPhoneViewBody({super.key});
+  const OtpPhoneViewBody({
+    super.key,
+    required this.verificationId,
+  });
+  final String verificationId;
 
   @override
   State<OtpPhoneViewBody> createState() => _OtpPhoneViewBodyState();
@@ -17,6 +27,7 @@ class OtpPhoneViewBody extends StatefulWidget {
 class _OtpPhoneViewBodyState extends State<OtpPhoneViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  final TextEditingController otpController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -33,6 +44,7 @@ class _OtpPhoneViewBodyState extends State<OtpPhoneViewBody> {
               ),
               const SizedBox(height: 50),
               Pinput(
+                controller: otpController,
                 defaultPinTheme: PinTheme(
                   width: 56,
                   height: 56,
@@ -69,9 +81,28 @@ class _OtpPhoneViewBodyState extends State<OtpPhoneViewBody> {
                 height: 55,
               ),
               CustomBotton(
-                onPressed: () {
+                onPressed: () async {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
+                    try {
+                      PhoneAuthCredential credential =
+                          await PhoneAuthProvider.credential(
+                              verificationId: widget.verificationId,
+                              smsCode: otpController.text.toString());
+                      await FirebaseAuth.instance
+                          .signInWithCredential(credential)
+                          .then(
+                        (value) {
+                          Navigator.of(context)
+                              .pushReplacementNamed(HomeView.routeName);
+                        },
+                      );
+                    } catch (e) {
+                      log(e.toString());
+                    }
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
                   }
                 },
                 text: 'Sign In',

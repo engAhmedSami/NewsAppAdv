@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:country_picker/country_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:newsapp/Core/utils/app_colors.dart';
@@ -7,7 +8,6 @@ import 'package:newsapp/Core/utils/app_images.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
 import 'package:newsapp/Core/widget/custom_text_field.dart';
-
 import 'package:newsapp/Featuers/auth/presentation/view/otp_phone_view.dart';
 import 'package:newsapp/constants.dart';
 
@@ -111,18 +111,29 @@ class PhoneSigninViewBodyState extends State<PhoneSigninViewBody> {
                 height: 90,
               ),
               CustomBotton(
-                onPressed: () {
+                onPressed: () async {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
 
-                    Navigator.pushNamed(context, OtpPhoneView.routeName);
+                    final phoneNumber = countryCode + phoneController.text;
+                    await FirebaseAuth.instance.verifyPhoneNumber(
+                      verificationCompleted:
+                          (PhoneAuthCredential credential) {},
+                      verificationFailed: (FirebaseAuthException e) {},
+                      codeSent: (String verificationId, int? resendToken) {
+                        Navigator.pushNamed(context, OtpPhoneView.routeName,
+                            arguments: verificationId);
+                      },
+                      codeAutoRetrievalTimeout: (String verificationId) {},
+                      phoneNumber: phoneNumber,
+                    );
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});
                   }
                 },
                 text: 'Sign In',
-              )
+              ),
             ],
           ),
         ),

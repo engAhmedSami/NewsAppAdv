@@ -34,7 +34,10 @@ Route<dynamic> onGenerateRoute(RouteSettings setting) {
     case PhoneSigninView.routeName:
       return MaterialPageRoute(builder: (context) => const PhoneSigninView());
     case OtpPhoneView.routeName:
-      return MaterialPageRoute(builder: (context) => const OtpPhoneView());
+      return MaterialPageRoute(
+          builder: (context) => OtpPhoneView(
+                verificationId: setting.arguments as String,
+              ));
     default:
       return MaterialPageRoute(builder: (context) => const SplashView());
   }
