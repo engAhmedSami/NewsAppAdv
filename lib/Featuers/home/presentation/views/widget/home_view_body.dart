@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/Featuers/home/presentation/views/widget/user_info_view.dart';
+import 'package:newsapp/Featuers/user_info/persentation/views/user_info_view.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
