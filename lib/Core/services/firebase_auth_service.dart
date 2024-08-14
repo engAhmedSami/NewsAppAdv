@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -210,5 +209,14 @@ class FirebaseAuthService {
     );
     final userCredential = await firebaseAuth.signInWithCredential(credential);
     return userCredential.user!;
+  }
+
+  Future<bool> checkExitingUser() async {
+    final user = firebaseAuth.currentUser;
+    if (user != null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

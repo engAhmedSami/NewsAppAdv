@@ -118,11 +118,6 @@ class _UserInfoViewBodyState extends State<UserInfoViewBody> {
         bio: bioController.text,
         profilePic: image!.path);
     if (image != null) {
-    } else {
-      snackBar(
-        context,
-        'Please Select Image',
-      );
-    }
+    } else {}
   }
 }
