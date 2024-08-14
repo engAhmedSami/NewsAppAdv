@@ -18,7 +18,7 @@ class PhoneSigninView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => PhoneSigninCubit(
+      create: (context) => SigninCubit(
         getIt.get<AuthRepo>(),
       ),
       child: Scaffold(
@@ -26,16 +26,16 @@ class PhoneSigninView extends StatelessWidget {
           context,
           title: 'Phone Signin',
         ),
-        body: BlocConsumer<PhoneSigninCubit, PhoneSigninState>(
+        body: BlocConsumer<SigninCubit, SigninState>(
           listener: (context, state) {
-            if (state is PhoneSigninCodeSent) {
+            if (state is SigninCodeSent) {
               succesTopSnackBar(
                 context,
                 'Code Sent',
               );
               Navigator.pushNamed(context, OtpPhoneView.routeName,
                   arguments: state.verificationId);
-            } else if (state is PhoneSigninError) {
+            } else if (state is SigninFailure) {
               failuerTopSnackBar(
                 context,
                 state.message,
@@ -44,7 +44,7 @@ class PhoneSigninView extends StatelessWidget {
           },
           builder: (context, state) {
             return CustomProgrssHud(
-                isLoading: state is PhoneSigninLoading,
+                isLoading: state is SigninLoading,
                 child: const PhoneSigninViewBody());
           },
         ),

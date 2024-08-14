@@ -25,7 +25,7 @@ class OtpPhoneView extends StatelessWidget {
     UserPrefs userPrefs = UserPrefs();
 
     return BlocProvider(
-      create: (context) => PhoneSigninCubit(
+      create: (context) => SigninCubit(
         getIt.get<AuthRepo>(),
       ),
       child: Scaffold(
@@ -33,7 +33,7 @@ class OtpPhoneView extends StatelessWidget {
           title: 'OTP Verification',
           context,
         ),
-        body: BlocConsumer<PhoneSigninCubit, PhoneSigninState>(
+        body: BlocConsumer<SigninCubit, SigninState>(
           listener: (context, state) {
             if (state is PhoneSigninSuccess) {
               Navigator.pushNamed(
@@ -45,7 +45,7 @@ class OtpPhoneView extends StatelessWidget {
                 'Phone Verified',
               );
               userPrefs.setLoggedIn(true);
-            } else if (state is PhoneSigninError) {
+            } else if (state is SigninFailure) {
               failuerTopSnackBar(
                 context,
                 state.message,
@@ -54,7 +54,7 @@ class OtpPhoneView extends StatelessWidget {
           },
           builder: (context, state) {
             return CustomProgrssHud(
-              isLoading: state is PhoneSigninLoading,
+              isLoading: state is SigninLoading,
               child: OtpPhoneViewBody(
                 verificationId: verificationId,
               ),

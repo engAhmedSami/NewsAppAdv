@@ -5,7 +5,7 @@ import 'package:newsapp/Core/services/firebase_auth_service.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 import 'package:newsapp/Core/utils/app_colors.dart';
-import 'package:newsapp/Featuers/home/presentation/views/widget/home_view_body.dart';
+import 'package:newsapp/Featuers/home/presentation/views/widget/user_info_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -32,7 +32,7 @@ class HomeView extends StatelessWidget {
         backgroundColor: AppColors.primaryColor,
         elevation: 0,
       ),
-      body: const HomeViewBody(),
+      body: const UserInfoView(),
     );
   }
 }

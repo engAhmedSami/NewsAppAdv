@@ -116,9 +116,7 @@ class PhoneSigninViewBodyState extends State<PhoneSigninViewBody> {
                     formKey.currentState!.save();
 
                     final phoneNumber = countryCode + phoneController.text;
-                    context
-                        .read<PhoneSigninCubit>()
-                        .verifyPhoneNumber(phoneNumber);
+                    context.read<SigninCubit>().verifyPhoneNumber(phoneNumber);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});

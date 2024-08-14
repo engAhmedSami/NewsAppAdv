@@ -51,4 +51,40 @@ class SigninCubit extends Cubit<SigninState> {
           userEntity: UserEntity(name: '', email: email, uId: ''))),
     );
   }
+
+  Future<void> verifyPhoneNumber(String phoneNumber) async {
+    emit(SigninLoading());
+
+    await authRepo.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      codeSentCallback: (verificationId) {
+        emit(
+          SigninCodeSent(verificationId),
+        );
+      },
+      verificationFailedCallback: (errorMessage) {
+        emit(SigninFailure(
+          message: errorMessage,
+        ));
+      },
+    );
+  }
+
+  Future<void> signInWithOtp(String verificationId, String otp) async {
+    emit(SigninLoading());
+
+    final result = await authRepo.signInWithOtp(verificationId, otp);
+    result.fold(
+      (failure) {
+        emit(SigninFailure(
+          message: failure.message,
+        ));
+      },
+      (user) {
+        emit(SigninSuccess(
+          userEntity: user,
+        )); // Emit success with the User object
+      },
+    );
+  }
 }

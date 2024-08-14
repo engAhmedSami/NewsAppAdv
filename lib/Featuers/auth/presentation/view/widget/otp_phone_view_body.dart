@@ -82,7 +82,7 @@ class _OtpPhoneViewBodyState extends State<OtpPhoneViewBody> {
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    context.read<PhoneSigninCubit>().signInWithOtp(
+                    context.read<SigninCubit>().signInWithOtp(
                           widget.verificationId,
                           otpController.text,
                         );

@@ -65,6 +65,10 @@ class Assets {
   /// assets/images/phone.svg
   static const String imagesPhone = "assets/images/phone.svg";
 
+  /// Assets for imagesProfile
+  /// assets/images/profile.png
+  static const String imagesProfile = "assets/images/profile.png";
+
   /// Assets for imagesSigninPhone
   /// assets/images/Signin_phone.svg
   static const String imagesSigninPhone = "assets/images/Signin_phone.svg";

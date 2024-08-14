@@ -1,25 +1,25 @@
 import 'package:newsapp/Featuers/auth/domain/entites/user_entity.dart';
 
-abstract class PhoneSigninState {}
+abstract class SigninState {}
 
-class PhoneSigninInitial extends PhoneSigninState {}
+class PhoneSigninInitial extends SigninState {}
 
-class PhoneSigninLoading extends PhoneSigninState {}
+class SigninLoading extends SigninState {}
 
-class PhoneSigninCodeSent extends PhoneSigninState {
+class SigninCodeSent extends SigninState {
   final String verificationId;
 
-  PhoneSigninCodeSent(this.verificationId);
+  SigninCodeSent(this.verificationId);
 }
 
-class PhoneSigninSuccess extends PhoneSigninState {
+class PhoneSigninSuccess extends SigninState {
   final UserEntity user;
 
   PhoneSigninSuccess(this.user);
 }
 
-class PhoneSigninError extends PhoneSigninState {
+class SigninFailure extends SigninState {
   final String message;
 
-  PhoneSigninError(this.message);
+  SigninFailure(this.message);
 }
