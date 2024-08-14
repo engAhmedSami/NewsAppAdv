@@ -111,4 +111,36 @@ class AuthRepoImpl extends AuthRepo {
       return left(ServerFailure('An error occurred. Please try again later.'));
     }
   }
+
+  @override
+  Future<Either<Failures, void>> verifyPhoneNumber({
+    required String phoneNumber,
+    required Function(String verificationId) codeSentCallback,
+    required Function(String errorMessage) verificationFailedCallback,
+  }) async {
+    try {
+      await firebaseAuthService.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        codeSentCallback: codeSentCallback,
+        verificationFailedCallback: verificationFailedCallback,
+      );
+      return right(
+        null,
+      ); // `unit` is used to represent void in Dartz
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, UserEntity>> signInWithOtp(
+      String verificationId, String otp) async {
+    try {
+      var user = await firebaseAuthService.signInWithOtp(verificationId, otp);
+      return right(UserModel.fromFirebaseUser(user));
+    } catch (e) {
+      return left(
+          ServerFailure('OTP verification failed. Please try again later.'));
+    }
+  }
 }

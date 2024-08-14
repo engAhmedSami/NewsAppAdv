@@ -1,7 +1,9 @@
 abstract class Failures {
   final String message;
 
-  Failures(this.message);
+  Failures(
+    this.message,
+  );
 }
 
 class ServerFailure extends Failures {

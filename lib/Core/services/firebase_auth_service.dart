@@ -6,7 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newsapp/Core/errors/exceptions.dart';
 
 class FirebaseAuthService {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   Future<User> createUserWithEmailAndPassword(
       {required String email, required String password}) async {
     try {
@@ -58,7 +58,7 @@ class FirebaseAuthService {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       if (!credential.user!.emailVerified) {
-        await _firebaseAuth.signOut();
+        await firebaseAuth.signOut();
         throw CustomExceptions(
           message: 'Email not verified. Please check your inbox.',
         );
@@ -163,7 +163,7 @@ class FirebaseAuthService {
 
   Future<void> sendPasswordResetLink({required String email}) async {
     try {
-      await _firebaseAuth.sendPasswordResetEmail(email: email);
+      await firebaseAuth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       log('FirebaseAuthException: ${e.toString()}');
       if (e.code == 'invalid-email') {
@@ -180,8 +180,35 @@ class FirebaseAuthService {
   }
 
   Future<void> signOut() async {
-    await _firebaseAuth.signOut();
+    await firebaseAuth.signOut();
     await GoogleSignIn().signOut();
     await FacebookAuth.instance.logOut();
+  }
+
+  Future<void> verifyPhoneNumber({
+    required String phoneNumber,
+    required Function(String verificationId) codeSentCallback,
+    required Function(String errorMessage) verificationFailedCallback,
+  }) async {
+    await firebaseAuth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      verificationCompleted: (PhoneAuthCredential credential) {},
+      verificationFailed: (FirebaseAuthException e) {
+        verificationFailedCallback(e.message ?? 'Verification failed');
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        codeSentCallback(verificationId);
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+  }
+
+  Future<User> signInWithOtp(String verificationId, String otp) async {
+    final credential = PhoneAuthProvider.credential(
+      verificationId: verificationId,
+      smsCode: otp,
+    );
+    final userCredential = await firebaseAuth.signInWithCredential(credential);
+    return userCredential.user!;
   }
 }

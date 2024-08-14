@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsapp/Core/helper_function/failuer_top_snak_bar.dart';
+import 'package:newsapp/Core/helper_function/scccess_top_snak_bar.dart';
+import 'package:newsapp/Core/services/get_it_service.dart';
+import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
+import 'package:newsapp/Core/widget/custom_progrss_hud.dart';
+import 'package:newsapp/Featuers/auth/domain/repos/auth_repo.dart';
+import 'package:newsapp/Featuers/auth/presentation/phone_signin/phone_signin_cubit.dart';
+import 'package:newsapp/Featuers/auth/presentation/phone_signin/phone_signin_state.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/verfied_email_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/otp_phone_view_body.dart';
+import 'package:newsapp/Featuers/home/presentation/views/home_view.dart';
 
 class OtpPhoneView extends StatelessWidget {
   const OtpPhoneView({
@@ -12,13 +22,45 @@ class OtpPhoneView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBarC(
-        title: 'OTP Verification',
-        context,
+    UserPrefs userPrefs = UserPrefs();
+
+    return BlocProvider(
+      create: (context) => PhoneSigninCubit(
+        getIt.get<AuthRepo>(),
       ),
-      body: OtpPhoneViewBody(
-        verificationId: verificationId,
+      child: Scaffold(
+        appBar: buildAppBarC(
+          title: 'OTP Verification',
+          context,
+        ),
+        body: BlocConsumer<PhoneSigninCubit, PhoneSigninState>(
+          listener: (context, state) {
+            if (state is PhoneSigninSuccess) {
+              Navigator.pushNamed(
+                context,
+                HomeView.routeName,
+              );
+              succesTopSnackBar(
+                context,
+                'Phone Verified',
+              );
+              userPrefs.setLoggedIn(true);
+            } else if (state is PhoneSigninError) {
+              failuerTopSnackBar(
+                context,
+                state.message,
+              );
+            }
+          },
+          builder: (context, state) {
+            return CustomProgrssHud(
+              isLoading: state is PhoneSigninLoading,
+              child: OtpPhoneViewBody(
+                verificationId: verificationId,
+              ),
+            );
+          },
+        ),
       ),
     );
   }

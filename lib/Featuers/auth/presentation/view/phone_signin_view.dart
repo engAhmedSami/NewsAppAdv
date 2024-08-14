@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsapp/Core/helper_function/failuer_top_snak_bar.dart';
+import 'package:newsapp/Core/helper_function/scccess_top_snak_bar.dart';
+import 'package:newsapp/Core/services/get_it_service.dart';
 import 'package:newsapp/Core/widget/build_app.dart';
+import 'package:newsapp/Core/widget/custom_progrss_hud.dart';
+import 'package:newsapp/Featuers/auth/domain/repos/auth_repo.dart';
+import 'package:newsapp/Featuers/auth/presentation/phone_signin/phone_signin_cubit.dart';
+import 'package:newsapp/Featuers/auth/presentation/phone_signin/phone_signin_state.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/otp_phone_view.dart';
 import 'widget/phone_signin_view_body.dart';
 
 class PhoneSigninView extends StatelessWidget {
@@ -8,12 +17,38 @@ class PhoneSigninView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(
-        context,
-        title: 'Phone Signin',
+    return BlocProvider(
+      create: (context) => PhoneSigninCubit(
+        getIt.get<AuthRepo>(),
       ),
-      body: const PhoneSigninViewBody(),
+      child: Scaffold(
+        appBar: buildAppBar(
+          context,
+          title: 'Phone Signin',
+        ),
+        body: BlocConsumer<PhoneSigninCubit, PhoneSigninState>(
+          listener: (context, state) {
+            if (state is PhoneSigninCodeSent) {
+              succesTopSnackBar(
+                context,
+                'Code Sent',
+              );
+              Navigator.pushNamed(context, OtpPhoneView.routeName,
+                  arguments: state.verificationId);
+            } else if (state is PhoneSigninError) {
+              failuerTopSnackBar(
+                context,
+                state.message,
+              );
+            }
+          },
+          builder: (context, state) {
+            return CustomProgrssHud(
+                isLoading: state is PhoneSigninLoading,
+                child: const PhoneSigninViewBody());
+          },
+        ),
+      ),
     );
   }
 }

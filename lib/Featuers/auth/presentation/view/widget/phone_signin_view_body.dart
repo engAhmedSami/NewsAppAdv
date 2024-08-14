@@ -1,14 +1,14 @@
 import 'dart:developer';
 import 'package:country_picker/country_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Core/utils/app_images.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
 import 'package:newsapp/Core/widget/custom_text_field.dart';
-import 'package:newsapp/Featuers/auth/presentation/view/otp_phone_view.dart';
+import 'package:newsapp/Featuers/auth/presentation/phone_signin/phone_signin_cubit.dart';
 import 'package:newsapp/constants.dart';
 
 class PhoneSigninViewBody extends StatefulWidget {
@@ -116,17 +116,9 @@ class PhoneSigninViewBodyState extends State<PhoneSigninViewBody> {
                     formKey.currentState!.save();
 
                     final phoneNumber = countryCode + phoneController.text;
-                    await FirebaseAuth.instance.verifyPhoneNumber(
-                      verificationCompleted:
-                          (PhoneAuthCredential credential) {},
-                      verificationFailed: (FirebaseAuthException e) {},
-                      codeSent: (String verificationId, int? resendToken) {
-                        Navigator.pushNamed(context, OtpPhoneView.routeName,
-                            arguments: verificationId);
-                      },
-                      codeAutoRetrievalTimeout: (String verificationId) {},
-                      phoneNumber: phoneNumber,
-                    );
+                    context
+                        .read<PhoneSigninCubit>()
+                        .verifyPhoneNumber(phoneNumber);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});
