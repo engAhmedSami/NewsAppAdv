@@ -10,7 +10,7 @@ import 'package:newsapp/Featuers/auth/presentation/phone_signin/phone_signin_cub
 import 'package:newsapp/Featuers/auth/presentation/phone_signin/phone_signin_state.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/verfied_email_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/otp_phone_view_body.dart';
-import 'package:newsapp/Featuers/home/presentation/views/home_view.dart';
+import 'package:newsapp/Core/services/auth_handeler.dart';
 
 class OtpPhoneView extends StatelessWidget {
   const OtpPhoneView({
@@ -36,10 +36,7 @@ class OtpPhoneView extends StatelessWidget {
         body: BlocConsumer<SigninCubit, SigninState>(
           listener: (context, state) {
             if (state is PhoneSigninSuccess) {
-              Navigator.pushNamed(
-                context,
-                HomeView.routeName,
-              );
+              Navigator.of(context).pushReplacementNamed(AuthHandler.routeName);
               succesTopSnackBar(
                 context,
                 'Phone Verified',

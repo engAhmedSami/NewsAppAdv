@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
-import 'package:newsapp/Featuers/home/presentation/views/home_view.dart';
+import 'package:newsapp/Featuers/home/presentation/views/nav_bar.dart';
 import 'package:newsapp/Featuers/on_boarding/presentation/view/on_boarding_view.dart';
 
 import 'package:newsapp/Featuers/splash/presentation/views/widget/splash_view_text.dart';

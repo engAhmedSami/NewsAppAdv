@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:newsapp/Core/helper_function/failuer_top_snak_bar.dart';
 import 'package:newsapp/Core/helper_function/scccess_top_snak_bar.dart';
+import 'package:newsapp/Core/services/auth_handeler.dart';
 import 'package:newsapp/Core/utils/app_images.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
-import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 
 class VerfiedEmailViewBody extends StatefulWidget {
   const VerfiedEmailViewBody({super.key});
@@ -30,7 +30,7 @@ class VerfiedEmailViewBodyState extends State<VerfiedEmailViewBody> {
         await user.reload();
         if (user.emailVerified) {
           timer.cancel();
-          Navigator.of(context).pushReplacementNamed(SigninView.routeName);
+          Navigator.of(context).pushReplacementNamed(AuthHandler.routeName);
         }
       }
     });
