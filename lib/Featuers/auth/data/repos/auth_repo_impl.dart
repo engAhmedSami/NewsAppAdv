@@ -2,15 +2,21 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:newsapp/Core/errors/exceptions.dart';
 import 'package:newsapp/Core/errors/failures.dart';
+import 'package:newsapp/Core/services/data_serviec.dart';
 import 'package:newsapp/Core/services/firebase_auth_service.dart';
+import 'package:newsapp/Core/utils/backend_endpoint.dart';
 import 'package:newsapp/Featuers/auth/data/models/user_model.dart';
 import 'package:newsapp/Featuers/auth/domain/entites/user_entity.dart';
 import 'package:newsapp/Featuers/auth/domain/repos/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;
+  final DatabaseService databaseService;
 
-  AuthRepoImpl({required this.firebaseAuthService});
+  AuthRepoImpl({
+    required this.databaseService,
+    required this.firebaseAuthService,
+  });
   @override
   Future<Either<Failures, UserEntity>> createUserWithEmailAndPassword(
       String email, String password, String name) async {
@@ -19,9 +25,9 @@ class AuthRepoImpl extends AuthRepo {
         email: email,
         password: password,
       );
-      return right(
-        UserModel.fromFirebaseUser(user),
-      );
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserData(user: userEntity);
+      return right(userEntity);
     } on CustomExceptions catch (e) {
       return left(ServerFailure(e.message));
     } catch (e) {
@@ -142,5 +148,11 @@ class AuthRepoImpl extends AuthRepo {
       return left(
           ServerFailure('OTP verification failed. Please try again later.'));
     }
+  }
+
+  @override
+  Future addUserData({required UserEntity user}) async {
+    await databaseService.addData(
+        path: BackendEndpoint.addUserData, data: user.toMap());
   }
 }

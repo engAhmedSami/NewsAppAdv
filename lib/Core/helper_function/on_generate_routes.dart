@@ -8,7 +8,6 @@ import 'package:newsapp/Featuers/auth/presentation/view/verfied_email_view.dart'
 import 'package:newsapp/Featuers/home/presentation/views/home_view.dart';
 import 'package:newsapp/Featuers/on_boarding/presentation/view/on_boarding_view.dart';
 import 'package:newsapp/Featuers/splash/presentation/views/splash_view.dart';
-import 'package:newsapp/Featuers/user_info/persentation/views/user_info_view.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings setting) {
   switch (setting.name) {
@@ -40,8 +39,8 @@ Route<dynamic> onGenerateRoute(RouteSettings setting) {
           verificationId: setting.arguments as String,
         ),
       );
-    case UserInfoView.routeName:
-      return MaterialPageRoute(builder: (context) => const UserInfoView());
+    // case UserInfoView.routeName:
+    //   return MaterialPageRoute(builder: (context) => const UserInfoView());
     default:
       return MaterialPageRoute(builder: (context) => const SplashView());
   }

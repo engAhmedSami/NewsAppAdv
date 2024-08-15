@@ -20,5 +20,5 @@ abstract class AuthRepo {
   });
   Future<Either<Failures, UserEntity>> signInWithOtp(
       String verificationId, String otp);
-  // Other methods remain the same
+  Future addUserData({required UserEntity user});
 }
