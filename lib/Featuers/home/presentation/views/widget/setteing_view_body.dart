@@ -1,9 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/Core/services/firebase_auth_service.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
-import 'package:newsapp/Featuers/home/presentation/views/widget/user_info_list_tile.dart';
+import 'package:newsapp/Featuers/home/presentation/user_info/persentation/views/widget/user_info_list_tile.dart';
 
 class SettingViewBody extends StatelessWidget {
   const SettingViewBody({

@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:newsapp/Featuers/auth/user_info/data/user_info_model.dart';
-import 'package:newsapp/Featuers/auth/user_info/persentation/save_info_cubit/profile_state.dart';
+import 'package:newsapp/Featuers/home/presentation/user_info/data/user_info_model.dart';
+import 'package:newsapp/Featuers/home/presentation/user_info/persentation/save_info_cubit/profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(ProfileInitial());

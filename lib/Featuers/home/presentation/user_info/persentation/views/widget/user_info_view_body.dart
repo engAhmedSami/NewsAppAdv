@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
 import 'package:newsapp/Core/widget/custom_text_field.dart';
-import 'package:newsapp/Featuers/auth/user_info/persentation/save_info_cubit/profile_cubit.dart';
-import 'package:newsapp/Featuers/auth/user_info/persentation/views/show_snck_bar.dart';
+import 'package:newsapp/Featuers/home/presentation/user_info/persentation/save_info_cubit/profile_cubit.dart';
+import 'package:newsapp/Featuers/home/presentation/user_info/persentation/views/show_snck_bar.dart';
 import 'package:newsapp/Featuers/home/presentation/views/nav_bar.dart';
 import 'package:newsapp/constants.dart';
 
