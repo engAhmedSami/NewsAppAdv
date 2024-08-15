@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -21,10 +23,10 @@ class EditUserInfoView extends StatefulWidget {
   });
 
   @override
-  _EditUserInfoViewState createState() => _EditUserInfoViewState();
+  EditUserInfoViewState createState() => EditUserInfoViewState();
 }
 
-class _EditUserInfoViewState extends State<EditUserInfoView> {
+class EditUserInfoViewState extends State<EditUserInfoView> {
   late TextEditingController _nameController;
   late TextEditingController _bioController;
   File? _profileImage;
