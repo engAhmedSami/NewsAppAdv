@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Core/utils/app_colors.dart';
-import 'package:newsapp/Featuers/home/presentation/views/home_view.dart';
+import 'package:newsapp/Featuers/home/presentation/views/news_home_view.dart';
 import 'package:newsapp/Featuers/home/presentation/views/setteing_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
