@@ -42,7 +42,6 @@ class PersistentTabState extends State<PersistentTab> {
     return [
       const HomeView(),
       const Center(child: Text("Search")),
-      const Center(child: Text("Messages")),
       const SetteingView(),
     ];
   }
@@ -56,11 +55,6 @@ class PersistentTabState extends State<PersistentTab> {
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.search),
-        activeColorPrimary: AppColors.secondaryColor,
-        inactiveColorPrimary: Colors.blueGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(Icons.message),
         activeColorPrimary: AppColors.secondaryColor,
         inactiveColorPrimary: Colors.blueGrey,
       ),
