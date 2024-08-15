@@ -40,7 +40,7 @@ class PersistentTabState extends State<PersistentTab> {
 
   List<Widget> _buildScreens() {
     return [
-      const HomeView(),
+      const NewsHomeView(),
       const Center(child: Text("Search")),
       const SetteingView(),
     ];
