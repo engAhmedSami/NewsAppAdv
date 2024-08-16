@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/Featuers/home/presentation/views/widget/bar_widget.dart';
 import 'header_widget.dart';
 
 class NewsHomeViewBody extends StatefulWidget {
@@ -13,15 +14,12 @@ class _NewsHomeViewBodyState extends State<NewsHomeViewBody> {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.0),
-      child: CustomScrollView(
-        physics: BouncingScrollPhysics(),
-        slivers: [
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                HeaderWidget(),
-              ],
-            ),
+      child: Column(
+        children: [
+          HeaderWidget(),
+          SizedBox(height: 16),
+          Expanded(
+            child: BarWidget(),
           ),
         ],
       ),
