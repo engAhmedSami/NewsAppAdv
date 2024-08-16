@@ -182,6 +182,7 @@ class FirebaseAuthService {
     await firebaseAuth.signOut();
     await GoogleSignIn().signOut();
     await FacebookAuth.instance.logOut();
+    await FirebaseAuth.instance.signOut();
   }
 
   Future<void> verifyPhoneNumber({

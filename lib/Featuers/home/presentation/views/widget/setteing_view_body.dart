@@ -71,10 +71,17 @@ class SettingViewBody extends StatelessWidget {
             leading: const Icon(Icons.logout_outlined),
             title: const Text('Logout'),
             onTap: () async {
+              // Store the current context
+              final navigator = Navigator.of(context);
+
               bool rememberMe = await userPrefs.isRememberMe();
               await userPrefs.clearLoginState(rememberMe: rememberMe);
               await firebaseAuthService.signOut();
-              Navigator.of(context).pushReplacementNamed(SigninView.routeName);
+
+              // Make sure the widget is still mounted before using the context
+              if (navigator.mounted) {
+                navigator.pushReplacementNamed(SigninView.routeName);
+              }
             },
           ),
         ],

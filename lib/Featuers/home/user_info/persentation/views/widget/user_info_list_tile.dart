@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:newsapp/Featuers/home/user_info/data/user_info_model.dart';
 import 'package:newsapp/Featuers/home/user_info/persentation/views/widget/edit_profile_body.dart';
 
@@ -43,30 +42,6 @@ class UserInfoListTileState extends State<UserInfoListTile> {
     });
   }
 
-  Future<String?> _uploadImageToFirebase(String filePath) async {
-    try {
-      final storageRef = FirebaseStorage.instance.ref();
-      final file = File(filePath);
-      final fileName = file.uri.pathSegments.last;
-      final imageRef = storageRef.child("profile_pics/$fileName");
-      final uploadTask = imageRef.putFile(file);
-      final snapshot = await uploadTask.whenComplete(() => null);
-      final downloadUrl = await snapshot.ref.getDownloadURL();
-      return downloadUrl;
-    } catch (e) {
-      // Handle any errors during the upload process
-      debugPrint("Error uploading image: $e");
-      return null;
-    }
-  }
-
-  Future<void> _updateProfilePicUrlInFirestore(
-      String uid, String downloadUrl) async {
-    await FirebaseFirestore.instance.collection('users').doc(uid).update({
-      'profilePic': downloadUrl,
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<UserInfoModel>(
@@ -83,47 +58,38 @@ class UserInfoListTileState extends State<UserInfoListTile> {
             title: Text("User data not found"),
           );
         } else {
-          // Data is loaded
           final userInfoModel = snapshot.data!;
           String profilePicUrl = userInfoModel.profilePic ?? '';
 
           if (profilePicUrl.isEmpty) {
             profilePicUrl =
                 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
-          } else if (profilePicUrl.startsWith('/')) {
-            // If the profilePic is a local file path, try to upload it to Firebase Storage
-            _uploadImageToFirebase(profilePicUrl).then((downloadUrl) {
-              if (downloadUrl != null) {
-                // Update Firestore with the new URL
-                _updateProfilePicUrlInFirestore(widget.uid, downloadUrl);
-                // Update the profilePicUrl to the download URL for display
-                profilePicUrl = downloadUrl;
-              }
-            });
           }
 
           return ListTile(
-            leading: profilePicUrl.startsWith('/')
-                ? CircleAvatar(
-                    backgroundImage: FileImage(File(profilePicUrl)),
-                    radius: 30,
-                  )
-                : CircleAvatar(
-                    backgroundImage: NetworkImage(profilePicUrl),
-                    radius: 30,
-                  ),
+            leading: CircleAvatar(
+              backgroundImage: profilePicUrl.startsWith('/')
+                  ? FileImage(File(profilePicUrl))
+                  : NetworkImage(profilePicUrl) as ImageProvider,
+              radius: 30,
+            ),
             title: Text(userInfoModel.name ?? ''),
             subtitle: Text(userInfoModel.bio ?? ''),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) {
-                  return EditUserInfoView(
+            onTap: () async {
+              final result = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditUserInfoView(
                     uid: widget.uid,
                     userInfo: userInfoModel,
-                    onUserInfoUpdated: _updateUserInfo,
-                  );
-                },
-              ));
+                    onUserInfoUpdated: () {},
+                  ),
+                ),
+              );
+
+              if (result == true) {
+                _updateUserInfo();
+              }
             },
           );
         }

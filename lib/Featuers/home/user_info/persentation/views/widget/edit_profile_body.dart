@@ -13,13 +13,12 @@ import 'package:newsapp/Featuers/home/user_info/data/user_info_model.dart';
 class EditUserInfoView extends StatefulWidget {
   final String uid;
   final UserInfoModel userInfo;
-  final VoidCallback onUserInfoUpdated; // Callback to notify parent widget
 
   const EditUserInfoView({
     super.key,
     required this.uid,
     required this.userInfo,
-    required this.onUserInfoUpdated,
+    required Null Function() onUserInfoUpdated,
   });
 
   @override
@@ -59,7 +58,6 @@ class EditUserInfoViewState extends State<EditUserInfoView> {
       final downloadUrl = await snapshot.ref.getDownloadURL();
       return downloadUrl;
     } catch (e) {
-      // Handle any errors during the upload process
       debugPrint("Error uploading image: $e");
       return null;
     }
@@ -83,9 +81,9 @@ class EditUserInfoViewState extends State<EditUserInfoView> {
         .doc(widget.uid)
         .update(updatedUserInfo);
 
-    widget.onUserInfoUpdated(); // Notify parent widget of update
-    Navigator.of(context)
-        .pop(); // Go back to the previous screen after updating
+    if (context.mounted) {
+      Navigator.of(context).pop(true); // Notify parent widget of the update
+    }
   }
 
   @override
@@ -127,7 +125,7 @@ class EditUserInfoViewState extends State<EditUserInfoView> {
             CustomBotton(
               text: 'Update',
               onPressed: _updateUserInfo,
-            )
+            ),
           ],
         ),
       ),
