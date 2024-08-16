@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:newsapp/Featuers/home/presentation/user_info/persentation/views/widget/user_info_list_tile.dart';
+import 'header_widget.dart';
 
-class NewsHomeViewBody extends StatelessWidget {
+class NewsHomeViewBody extends StatefulWidget {
   const NewsHomeViewBody({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
+  State<NewsHomeViewBody> createState() => _NewsHomeViewBodyState();
+}
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: CustomScrollView(physics: const BouncingScrollPhysics(), slivers: [
-        SliverToBoxAdapter(
-          child: Column(
-            children: [
-              if (user != null) UserInfoListTile(uid: user.uid),
-              const SizedBox(height: 30),
-            ],
+class _NewsHomeViewBodyState extends State<NewsHomeViewBody> {
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      child: CustomScrollView(
+        physics: BouncingScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                HeaderWidget(),
+              ],
+            ),
           ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 }

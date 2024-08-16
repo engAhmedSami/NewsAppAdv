@@ -7,11 +7,16 @@ import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 import 'package:newsapp/Featuers/home/presentation/user_info/persentation/views/widget/user_info_list_tile.dart';
 
-class SettingViewBody extends StatelessWidget {
+class SettingViewBody extends StatefulWidget {
   const SettingViewBody({
     super.key,
   });
 
+  @override
+  State<SettingViewBody> createState() => _SettingViewBodyState();
+}
+
+class _SettingViewBodyState extends State<SettingViewBody> {
   @override
   Widget build(BuildContext context) {
     final String uid = FirebaseAuth.instance.currentUser!.uid;
@@ -82,6 +87,7 @@ class SettingViewBody extends StatelessWidget {
               if (navigator.mounted) {
                 navigator.pushReplacementNamed(SigninView.routeName);
               }
+              setState(() {});
             },
           ),
         ],
