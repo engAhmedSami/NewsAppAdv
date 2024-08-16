@@ -6,7 +6,7 @@ import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signup_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/verfied_email_view.dart';
 import 'package:newsapp/Core/services/auth_handeler.dart';
-import 'package:newsapp/Featuers/home/presentation/user_info/persentation/views/user_info_view.dart';
+import 'package:newsapp/Featuers/home/user_info/persentation/views/user_info_view.dart';
 import 'package:newsapp/Featuers/home/presentation/views/nav_bar.dart';
 import 'package:newsapp/Featuers/on_boarding/presentation/view/on_boarding_view.dart';
 import 'package:newsapp/Featuers/splash/presentation/views/splash_view.dart';

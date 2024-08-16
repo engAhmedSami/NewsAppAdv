@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapp/Core/widget/custom_progrss_hud.dart';
 
 import 'package:newsapp/Featuers/auth/presentation/view/verfied_email_view.dart';
-import 'package:newsapp/Featuers/home/presentation/user_info/persentation/save_info_cubit/profile_cubit.dart';
-import 'package:newsapp/Featuers/home/presentation/user_info/persentation/save_info_cubit/profile_state.dart';
-import 'package:newsapp/Featuers/home/presentation/user_info/persentation/views/widget/user_info_view_body.dart';
+import 'package:newsapp/Featuers/home/user_info/persentation/save_info_cubit/profile_cubit.dart';
+import 'package:newsapp/Featuers/home/user_info/persentation/save_info_cubit/profile_state.dart';
+import 'package:newsapp/Featuers/home/user_info/persentation/views/widget/user_info_view_body.dart';
 
 class UserInfoView extends StatelessWidget {
   const UserInfoView({super.key});

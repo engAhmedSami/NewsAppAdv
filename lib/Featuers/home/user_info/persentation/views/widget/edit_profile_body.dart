@@ -8,7 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
 import 'package:newsapp/Core/widget/custom_text_field.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/verfied_email_view.dart';
-import 'package:newsapp/Featuers/home/presentation/user_info/data/user_info_model.dart';
+import 'package:newsapp/Featuers/home/user_info/data/user_info_model.dart';
 
 class EditUserInfoView extends StatefulWidget {
   final String uid;
