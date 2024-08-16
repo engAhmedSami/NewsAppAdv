@@ -77,16 +77,16 @@ class _SettingViewBodyState extends State<SettingViewBody> {
             title: const Text('Logout'),
             onTap: () async {
               // Store the current context
-              final navigator = Navigator.of(context);
 
               bool rememberMe = await userPrefs.isRememberMe();
               await userPrefs.clearLoginState(rememberMe: rememberMe);
               await firebaseAuthService.signOut();
 
-              // Make sure the widget is still mounted before using the context
-              if (navigator.mounted) {
-                navigator.pushReplacementNamed(SigninView.routeName);
-              }
+              Navigator.pushNamed(
+                context,
+                SigninView.routeName,
+              );
+
               setState(() {});
             },
           ),

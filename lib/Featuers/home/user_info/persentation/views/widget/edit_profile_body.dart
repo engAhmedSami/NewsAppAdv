@@ -26,15 +26,15 @@ class EditUserInfoView extends StatefulWidget {
 }
 
 class EditUserInfoViewState extends State<EditUserInfoView> {
-  late TextEditingController _nameController;
-  late TextEditingController _bioController;
-  File? _profileImage;
+  late TextEditingController nameController;
+  late TextEditingController bioController;
+  File? profileImage;
 
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: widget.userInfo.name);
-    _bioController = TextEditingController(text: widget.userInfo.bio);
+    nameController = TextEditingController(text: widget.userInfo.name);
+    bioController = TextEditingController(text: widget.userInfo.bio);
   }
 
   Future<void> _pickImage() async {
@@ -42,7 +42,7 @@ class EditUserInfoViewState extends State<EditUserInfoView> {
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
-        _profileImage = File(pickedFile.path);
+        profileImage = File(pickedFile.path);
       });
     }
   }
@@ -66,13 +66,13 @@ class EditUserInfoViewState extends State<EditUserInfoView> {
   Future<void> _updateUserInfo() async {
     String? profilePicUrl = widget.userInfo.profilePic;
 
-    if (_profileImage != null) {
-      profilePicUrl = await _uploadImageToFirebase(_profileImage!.path);
+    if (profileImage != null) {
+      profilePicUrl = await _uploadImageToFirebase(profileImage!.path);
     }
 
     final updatedUserInfo = {
-      'name': _nameController.text,
-      'bio': _bioController.text,
+      'name': nameController.text,
+      'bio': bioController.text,
       'profilePic': profilePicUrl,
     };
 
@@ -102,22 +102,22 @@ class EditUserInfoViewState extends State<EditUserInfoView> {
               onTap: _pickImage,
               child: CircleAvatar(
                 radius: 50,
-                backgroundImage: _profileImage != null
-                    ? FileImage(_profileImage!)
+                backgroundImage: profileImage != null
+                    ? FileImage(profileImage!)
                     : NetworkImage(widget.userInfo.profilePic ?? ''),
               ),
             ),
             const SizedBox(height: 24),
             CustomTextFormField(
               hintText: 'Name',
-              controller: _nameController,
+              controller: nameController,
               prefixIcon: const Icon(Icons.person, color: Colors.grey),
               textInputType: TextInputType.name,
             ),
             const SizedBox(height: 24.0),
             CustomTextFormField(
               hintText: 'Bio',
-              controller: _bioController,
+              controller: bioController,
               prefixIcon: const Icon(Icons.info, color: Colors.grey),
               textInputType: TextInputType.name,
             ),

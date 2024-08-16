@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Core/utils/app_images.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
-import 'package:newsapp/Featuers/home/presentation/views/widget/home_view_body.dart';
+import 'package:newsapp/Featuers/home/presentation/views/widget/news_home_view_body.dart';
 
 class NewsHomeView extends StatelessWidget {
   const NewsHomeView({super.key});
