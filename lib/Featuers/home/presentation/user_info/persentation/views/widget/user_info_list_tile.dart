@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:newsapp/Featuers/home/user_info/data/user_info_model.dart';
-import 'package:newsapp/Featuers/home/user_info/persentation/views/widget/edit_profile_body.dart';
+import 'package:newsapp/Featuers/home/presentation/user_info/data/user_info_model.dart';
+import 'package:newsapp/Featuers/home/presentation/user_info/persentation/views/widget/edit_profile_body.dart';
 
 class UserInfoListTile extends StatefulWidget {
   final String uid;

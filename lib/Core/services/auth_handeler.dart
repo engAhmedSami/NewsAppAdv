@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
-import 'package:newsapp/Featuers/home/user_info/persentation/views/user_info_view.dart';
+import 'package:newsapp/Featuers/home/presentation/user_info/persentation/views/user_info_view.dart';
 import 'package:newsapp/Featuers/home/presentation/views/nav_bar.dart';
 
 class AuthHandler extends StatelessWidget {
