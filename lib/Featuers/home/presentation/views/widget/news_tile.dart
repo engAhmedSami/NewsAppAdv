@@ -38,14 +38,19 @@ class NewsTile extends StatelessWidget {
             style: AppStyles.styleSemiBold16,
             maxLines: 3,
             overflow: TextOverflow.fade,
+            softWrap: true,
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
           Text(
             datasmodel.description ?? '',
             maxLines: 3,
             style: AppStyles.styleMedium13,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.left,
+            softWrap: true,
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 20),
           const Divider(
             color: AppColors.secondaryColor,
             height: BorderSide.strokeAlignCenter,
@@ -57,6 +62,7 @@ class NewsTile extends StatelessWidget {
             height: BorderSide.strokeAlignCenter,
             thickness: 1.5,
           ),
+          const SizedBox(height: 12),
         ],
       ),
     );
