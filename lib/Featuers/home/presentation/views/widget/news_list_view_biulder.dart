@@ -20,9 +20,8 @@ class NewsListViewBuilder extends StatefulWidget {
 
 class NewsListViewBuilderState extends State<NewsListViewBuilder> {
   Future<List<DatasModel>> fetchNews() {
-    return NewsService(Dio(), widget.selectedCountryCode).news(
-      category: widget.category,
-    );
+    return NewsService(Dio(), widget.selectedCountryCode)
+        .news(category: widget.category);
   }
 
   @override
