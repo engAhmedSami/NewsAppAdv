@@ -72,8 +72,10 @@ class _SettingViewBodyState extends State<SettingViewBody> {
               // Handle About setting
             },
           ),
+
+          // Sign Out Option
           ListTile(
-            leading: const Icon(Icons.logout_outlined),
+            leading: const Icon(Icons.logout),
             title: const Text('Logout'),
             onTap: () async {
               bool rememberMe = await userPrefs.isRememberMe();
