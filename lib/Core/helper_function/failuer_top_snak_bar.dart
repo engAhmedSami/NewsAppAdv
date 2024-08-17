@@ -11,22 +11,19 @@ void failuerTopSnackBar(BuildContext context, String message) {
   );
 }
 
+// buttom snakbar
+// final snackBar = SnackBar(
+//   content: AwesomeSnackbarContent(
+//     title: 'Error',
+//     message: state.message,
+//     contentType: ContentType.failure,
+//   ),
+//   elevation: 0,
+//   backgroundColor: Colors.transparent,
+//   behavior: SnackBarBehavior.floating,
+//   duration: const Duration(seconds: 3),
+// );
 
-
-
-  // buttom snakbar
-  // final snackBar = SnackBar(
-          //   content: AwesomeSnackbarContent(
-          //     title: 'Error',
-          //     message: state.message,
-          //     contentType: ContentType.failure,
-          //   ),
-          //   elevation: 0,
-          //   backgroundColor: Colors.transparent,
-          //   behavior: SnackBarBehavior.floating,
-          //   duration: const Duration(seconds: 3),
-          // );
-
-          // ScaffoldMessenger.of(context)
-          //   ..hideCurrentSnackBar()
-          //   ..showSnackBar(snackBar);
+// ScaffoldMessenger.of(context)
+//   ..hideCurrentSnackBar()
+//   ..showSnackBar(snackBar);

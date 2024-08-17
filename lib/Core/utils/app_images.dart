@@ -1,6 +1,6 @@
 class Assets {
   Assets._();
-  
+
   /// Assets for imagesApple
   /// assets/images/apple.svg
   static const String imagesApple = "assets/images/apple.svg";
@@ -19,7 +19,8 @@ class Assets {
 
   /// Assets for imagesForgotPassword
   /// assets/images/Forgot_password.svg
-  static const String imagesForgotPassword = "assets/images/Forgot_password.svg";
+  static const String imagesForgotPassword =
+      "assets/images/Forgot_password.svg";
 
   /// Assets for imagesGoogel
   /// assets/images/googel.svg
@@ -43,7 +44,8 @@ class Assets {
 
   /// Assets for imagesNewsiconRemovebgPreview
   /// assets/images/newsicon-removebg-preview.png
-  static const String imagesNewsiconRemovebgPreview = "assets/images/newsicon-removebg-preview.png";
+  static const String imagesNewsiconRemovebgPreview =
+      "assets/images/newsicon-removebg-preview.png";
 
   /// Assets for imagesOnbording1
   /// assets/images/onbording1.png
@@ -75,6 +77,6 @@ class Assets {
 
   /// Assets for imagesTwoFactorAuthentication
   /// assets/images/Two_factor_authentication.svg
-  static const String imagesTwoFactorAuthentication = "assets/images/Two_factor_authentication.svg";
+  static const String imagesTwoFactorAuthentication =
+      "assets/images/Two_factor_authentication.svg";
 }
-
