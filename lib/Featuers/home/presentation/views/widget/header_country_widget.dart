@@ -86,7 +86,7 @@ class HeaderCountryWidgetState extends State<HeaderCountryWidget> {
           Icons.location_on,
           color: AppColors.secondaryColor,
         ),
-        const SizedBox(width: 10),
+        const SizedBox(width: 4),
         Expanded(
           child: DropdownButton<String>(
             isExpanded: true, // Allow the dropdown to expand

@@ -63,7 +63,7 @@ class BarWidgetState extends State<BarWidget>
           indicatorSize: TabBarIndicatorSize.label, // Size of the underline
           labelColor: AppColors.secondaryColor, // Selected tab text color
           unselectedLabelColor: Colors.grey, // Unselected tab text color
-          labelStyle: AppStyles.styleMedium14, // Selected tab text style
+          labelStyle: AppStyles.styleMedium16, // Selected tab text style
           unselectedLabelStyle:
               AppStyles.styleMedium14, // Unselected tab text style
           indicatorColor:
