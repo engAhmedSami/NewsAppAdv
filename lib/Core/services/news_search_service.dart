@@ -5,7 +5,9 @@ import 'package:newsapp/Featuers/home/data/Model/article_model.dart';
 
 class SearchNewsService {
   final Dio dio;
-  final String apiKey = '4eea4c3eb7289c28a6c0d47ebae0c269';
+  // final String apiKey = '4eea4c3eb7289c28a6c0d47ebae0c269';
+  final String apiKey = '99b497417fe9d9af2cf25c4c3ce8dfd6';
+
   final String keywords;
 
   SearchNewsService(
