@@ -4,6 +4,7 @@ import 'package:newsapp/Core/services/news_search_service.dart';
 import 'package:newsapp/Core/widget/custom_text_field.dart';
 import 'package:newsapp/Featuers/home/data/Model/article_model.dart';
 import 'package:newsapp/Featuers/home/presentation/views/widget/news_tile.dart';
+import 'package:newsapp/Featuers/home/presentation/views/widget/news_tile_fade.dart';
 import 'package:newsapp/constants.dart';
 
 class SearchViewBody extends StatefulWidget {
@@ -46,7 +47,8 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                     future: _searchResults,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
+                        return const SingleChildScrollView(
+                            child: NewsTileFade());
                       } else if (snapshot.hasError) {
                         return const Center(
                           child: Text(
