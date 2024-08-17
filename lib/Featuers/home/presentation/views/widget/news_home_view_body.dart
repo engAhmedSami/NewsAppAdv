@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/Featuers/home/presentation/views/widget/bar_widget.dart';
+import 'package:newsapp/Featuers/home/presentation/views/widget/news_list_view_biulder.dart';
 import 'header_widget.dart';
 
 class NewsHomeViewBody extends StatefulWidget {
@@ -22,17 +22,15 @@ class _NewsHomeViewBodyState extends State<NewsHomeViewBody> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Column(
-        children: [
-          HeaderWidget(
+      child: CustomScrollView(slivers: [
+        SliverToBoxAdapter(
+          child: HeaderWidget(
+            // selectedCountryCode: selectedCountryCode,
             onCountryChanged: onCountryChanged,
           ),
-          const SizedBox(height: 16),
-          const Expanded(
-            child: BarWidget(),
-          ),
-        ],
-      ),
+        ),
+        const NewsListViewBuilder(category: '')
+      ]),
     );
   }
 }
