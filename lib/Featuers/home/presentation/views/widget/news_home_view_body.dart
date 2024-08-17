@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/Featuers/home/presentation/views/widget/header_categores_widget.dart';
 import 'package:newsapp/Featuers/home/presentation/views/widget/news_list_view_biulder.dart';
-import 'header_widget.dart';
+import 'header_country_widget.dart';
 
 class NewsHomeViewBody extends StatefulWidget {
   const NewsHomeViewBody({super.key});
@@ -10,7 +11,14 @@ class NewsHomeViewBody extends StatefulWidget {
 }
 
 class _NewsHomeViewBodyState extends State<NewsHomeViewBody> {
-  String selectedCountryCode = 'ae'; // Default to 'United Arab Emirates'
+  String selectedCountryCode = 'eg'; // Default to 'Egypt'
+  String selectedCategory = 'general'; // Default to 'General News'
+
+  void onCategoryChanged(String category) {
+    setState(() {
+      selectedCategory = category;
+    });
+  }
 
   void onCountryChanged(String countryCode) {
     setState(() {
@@ -22,15 +30,36 @@ class _NewsHomeViewBodyState extends State<NewsHomeViewBody> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: CustomScrollView(slivers: [
-        SliverToBoxAdapter(
-          child: HeaderWidget(
-            // selectedCountryCode: selectedCountryCode,
-            onCountryChanged: onCountryChanged,
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              physics: const BouncingScrollPhysics(),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: HeaderCountryWidget(
+                      onCountryChanged: onCountryChanged,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: HeaderCategoresWidget(
+                      onCategoryChanged: onCategoryChanged,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
-        const NewsListViewBuilder(category: '')
-      ]),
+          NewsListViewBuilder(
+            category: selectedCategory,
+            selectedCountryCode: selectedCountryCode,
+          ),
+        ],
+      ),
     );
   }
 }

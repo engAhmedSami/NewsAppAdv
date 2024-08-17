@@ -5,27 +5,30 @@ import 'package:newsapp/Featuers/home/data/Model/article_model.dart';
 import 'news_list_view.dart';
 
 class NewsListViewBuilder extends StatefulWidget {
-  const NewsListViewBuilder({super.key, required this.category});
+  const NewsListViewBuilder({
+    super.key,
+    required this.category,
+    required this.selectedCountryCode,
+  });
 
   final String category;
+  final String selectedCountryCode;
 
   @override
-  State<NewsListViewBuilder> createState() => _NewsListViewBuilderState();
+  State<NewsListViewBuilder> createState() => NewsListViewBuilderState();
 }
 
-class _NewsListViewBuilderState extends State<NewsListViewBuilder> {
-  late Future<List<DatasModel>> future;
-
-  @override
-  void initState() {
-    super.initState();
-    future = NewsService(Dio()).news(category: widget.category);
+class NewsListViewBuilderState extends State<NewsListViewBuilder> {
+  Future<List<DatasModel>> fetchNews() {
+    return NewsService(Dio(), widget.selectedCountryCode).news(
+      category: widget.category,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<DatasModel>>(
-      future: future,
+      future: fetchNews(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return NewsListView(

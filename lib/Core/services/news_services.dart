@@ -3,18 +3,36 @@ import 'package:newsapp/Featuers/home/data/Model/article_model.dart';
 
 class NewsService {
   final Dio dio;
-  NewsService(this.dio);
-  Future<List<DatasModel>> news({required String category}) async {
-    Response response = await dio.get(
-        'https://api.mediastack.com/v1/news?access_key=4eea4c3eb7289c28a6c0d47ebae0c269&keywords=tennis&countries=us,gb,de');
-    Map<String, dynamic> jasonData = response.data;
-    List<dynamic> data = jasonData['data'];
+  final String apiKey = '4eea4c3eb7289c28a6c0d47ebae0c269';
+  final String countries;
 
-    List<DatasModel> dataList = [];
-    for (var datas in data) {
-      DatasModel datasModel = DatasModel.fromJson(datas);
-      dataList.add(datasModel);
+  NewsService(this.dio, this.countries);
+
+  Future<List<DatasModel>> news({required String category}) async {
+    try {
+      Response response = await dio.get(
+        'https://api.mediastack.com/v1/news?access_key=$apiKey&countries=$countries&categories=$category',
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> jsonData = response.data;
+        List<dynamic> data = jsonData['data'];
+
+        List<DatasModel> dataList = [];
+        for (var datas in data) {
+          DatasModel datasModel = DatasModel.fromJson(datas);
+          dataList.add(datasModel);
+        }
+        return dataList;
+      } else {
+        // Handle non-200 status codes
+        print('Error: ${response.statusCode}');
+        return [];
+      }
+    } catch (e) {
+      // Handle any errors
+      print('Error: $e');
+      return [];
     }
-    return dataList;
   }
 }
