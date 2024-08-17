@@ -3,7 +3,9 @@ import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
 
 class BarWidget extends StatefulWidget {
-  const BarWidget({super.key});
+  final void Function(String category) onCategoryChanged;
+
+  const BarWidget({super.key, required this.onCategoryChanged});
 
   @override
   BarWidgetState createState() => BarWidgetState();
@@ -15,11 +17,13 @@ class BarWidgetState extends State<BarWidget>
 
   // List of categories (tabs)
   final List<String> categories = [
-    "Popular",
-    "Politics",
-    "Tech",
-    "Healthy",
-    "Science",
+    "general",
+    "business",
+    "entertainment",
+    "health",
+    "science",
+    "sports",
+    "technology",
   ];
 
   @override
@@ -27,6 +31,18 @@ class BarWidgetState extends State<BarWidget>
     super.initState();
     // Initialize the TabController
     _tabController = TabController(length: categories.length, vsync: this);
+
+    // Schedule the initial category change after the first frame
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.onCategoryChanged(categories[0]);
+    });
+
+    // Listen to tab changes and notify parent widget
+    _tabController.addListener(() {
+      if (_tabController.indexIsChanging) {
+        widget.onCategoryChanged(categories[_tabController.index]);
+      }
+    });
   }
 
   @override
@@ -53,28 +69,18 @@ class BarWidgetState extends State<BarWidget>
           indicatorColor:
               AppColors.secondaryColor, // Underline color for selected tab
           indicatorWeight: 1, // Thickness of the underline
-          tabs: categories.map((category) => Tab(text: category)).toList(),
-          onTap: (index) {
-            // Handle tab selection
-          },
+          tabs: categories
+              .map((category) => Tab(text: category.capitalize()))
+              .toList(),
           tabAlignment: TabAlignment.start,
-        ),
-
-        // TabBarView to show the content corresponding to each tab
-        Expanded(
-          child: TabBarView(
-            controller: _tabController,
-            children: categories.map((category) {
-              return Center(
-                child: Text(
-                  category,
-                  style: const TextStyle(fontSize: 24),
-                ),
-              );
-            }).toList(),
-          ),
         ),
       ],
     );
+  }
+}
+
+extension StringExtension on String {
+  String capitalize() {
+    return '${this[0].toUpperCase()}${substring(1)}';
   }
 }

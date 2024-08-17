@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/Featuers/home/presentation/views/widget/header_categores_widget.dart';
+import 'package:newsapp/Featuers/home/presentation/views/widget/bar_widget.dart'; // Import BarWidget
 import 'package:newsapp/Featuers/home/presentation/views/widget/news_list_view_biulder.dart';
 import 'header_country_widget.dart';
 
@@ -14,15 +14,15 @@ class _NewsHomeViewBodyState extends State<NewsHomeViewBody> {
   String selectedCountryCode = 'eg'; // Default to 'Egypt'
   String selectedCategory = 'general'; // Default to 'General News'
 
-  void onCategoryChanged(String category) {
-    setState(() {
-      selectedCategory = category;
-    });
-  }
-
   void onCountryChanged(String countryCode) {
     setState(() {
       selectedCountryCode = countryCode;
+    });
+  }
+
+  void onCategoryChanged(String category) {
+    setState(() {
+      selectedCategory = category;
     });
   }
 
@@ -33,25 +33,21 @@ class _NewsHomeViewBodyState extends State<NewsHomeViewBody> {
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              physics: const BouncingScrollPhysics(),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: HeaderCountryWidget(
-                      onCountryChanged: onCountryChanged,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: HeaderCountryWidget(
+                        onCountryChanged: onCountryChanged,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: HeaderCategoresWidget(
-                      onCategoryChanged: onCategoryChanged,
-                    ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                BarWidget(onCategoryChanged: onCategoryChanged),
+              ],
             ),
           ),
           NewsListViewBuilder(

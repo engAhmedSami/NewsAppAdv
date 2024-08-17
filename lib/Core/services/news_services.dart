@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:newsapp/Featuers/home/data/Model/article_model.dart';
 
@@ -26,12 +28,12 @@ class NewsService {
         return dataList;
       } else {
         // Handle non-200 status codes
-        print('Error: ${response.statusCode}');
+        log('Error: ${response.statusCode}');
         return [];
       }
     } catch (e) {
       // Handle any errors
-      print('Error: $e');
+      log('Error: $e');
       return [];
     }
   }

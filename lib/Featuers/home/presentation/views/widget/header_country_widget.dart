@@ -104,6 +104,11 @@ class HeaderCountryWidgetState extends State<HeaderCountryWidget> {
             onChanged: onCountryChanged,
           ),
         ),
+        IconButton(
+          color: AppColors.secondaryColor,
+          icon: const Icon(Icons.notifications),
+          onPressed: () {},
+        ),
       ],
     );
   }
