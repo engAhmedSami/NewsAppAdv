@@ -10,15 +10,25 @@ class NewsHomeViewBody extends StatefulWidget {
 }
 
 class _NewsHomeViewBodyState extends State<NewsHomeViewBody> {
+  String selectedCountryCode = 'ae'; // Default to 'United Arab Emirates'
+
+  void onCountryChanged(String countryCode) {
+    setState(() {
+      selectedCountryCode = countryCode;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: [
-          HeaderWidget(),
-          SizedBox(height: 16),
-          Expanded(
+          HeaderWidget(
+            onCountryChanged: onCountryChanged,
+          ),
+          const SizedBox(height: 16),
+          const Expanded(
             child: BarWidget(),
           ),
         ],
