@@ -33,6 +33,10 @@ class Assets {
   /// assets/images/image2_resized.png
   static const String imagesImage2Resized = "assets/images/image2_resized.png";
 
+  /// Assets for imagesLogoapp
+  /// assets/images/logoapp.jpg
+  static const String imagesLogoapp = "assets/images/logoapp.jpg";
+
   /// Assets for imagesMail
   /// assets/images/mail.png
   static const String imagesMail = "assets/images/mail.png";
