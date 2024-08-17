@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Featuers/home/presentation/views/news_home_view.dart';
+import 'package:newsapp/Featuers/home/presentation/views/search_view.dart';
 import 'package:newsapp/Featuers/home/presentation/views/setteing_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
@@ -12,21 +13,21 @@ class PersistentTab extends StatefulWidget {
 }
 
 class PersistentTabState extends State<PersistentTab> {
-  late PersistentTabController _controller;
+  late PersistentTabController controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = PersistentTabController(initialIndex: 0);
+    controller = PersistentTabController(initialIndex: 0);
   }
 
   @override
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,
-      controller: _controller,
-      screens: _buildScreens(),
-      items: _navBarsItems(),
+      controller: controller,
+      screens: buildScreens(),
+      items: navBarsItems(),
       handleAndroidBackButtonPress: true,
       resizeToAvoidBottomInset: true,
       stateManagement: true,
@@ -38,15 +39,15 @@ class PersistentTabState extends State<PersistentTab> {
     );
   }
 
-  List<Widget> _buildScreens() {
+  List<Widget> buildScreens() {
     return [
       const NewsHomeView(),
-      const Center(child: Text("Search")),
+      const SearchView(),
       const SetteingView(),
     ];
   }
 
-  List<PersistentBottomNavBarItem> _navBarsItems() {
+  List<PersistentBottomNavBarItem> navBarsItems() {
     return [
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.home),
