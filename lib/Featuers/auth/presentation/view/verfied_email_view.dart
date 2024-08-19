@@ -21,7 +21,7 @@ class VerfiedEmailView extends StatelessWidget {
 AppBar buildAppBarC(context, {required String title}) {
   return AppBar(
     automaticallyImplyLeading: false,
-    backgroundColor: AppColors.primaryColor,
+    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
     centerTitle: true,
     title: Text(
       title,

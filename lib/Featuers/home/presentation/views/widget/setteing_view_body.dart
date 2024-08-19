@@ -1,16 +1,14 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/Core/services/firebase_auth_service.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 import 'package:newsapp/Featuers/home/user_info/persentation/views/widget/user_info_list_tile.dart';
+import 'package:provider/provider.dart';
+import 'package:newsapp/Core/helper_function/theme_provider.dart';
 
 class SettingViewBody extends StatefulWidget {
-  const SettingViewBody({
-    super.key,
-  });
+  const SettingViewBody({super.key});
 
   @override
   State<SettingViewBody> createState() => _SettingViewBodyState();
@@ -22,6 +20,7 @@ class _SettingViewBodyState extends State<SettingViewBody> {
     final String uid = FirebaseAuth.instance.currentUser!.uid;
     UserPrefs userPrefs = UserPrefs();
     FirebaseAuthService firebaseAuthService = FirebaseAuthService();
+    final themeProvider = Provider.of<ThemeProvider>(context);
 
     return SingleChildScrollView(
       child: Column(
@@ -42,9 +41,9 @@ class _SettingViewBodyState extends State<SettingViewBody> {
             leading: const Icon(Icons.dark_mode),
             title: const Text('Dark Mode'),
             trailing: Switch(
-              value: false,
+              value: themeProvider.themeMode == ThemeMode.dark,
               onChanged: (bool value) {
-                // Handle dark mode toggle
+                themeProvider.toggleTheme();
               },
             ),
           ),
@@ -81,6 +80,8 @@ class _SettingViewBodyState extends State<SettingViewBody> {
               bool rememberMe = await userPrefs.isRememberMe();
               await userPrefs.clearLoginState(rememberMe: rememberMe);
               await firebaseAuthService.signOut();
+
+              if (!mounted) return; // Ensure context is still valid
               Navigator.of(context).pushReplacementNamed(SigninView.routeName);
             },
           ),

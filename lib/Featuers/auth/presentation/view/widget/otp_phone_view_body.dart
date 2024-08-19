@@ -44,6 +44,7 @@ class _OtpPhoneViewBodyState extends State<OtpPhoneViewBody> {
               Pinput(
                 controller: otpController,
                 defaultPinTheme: PinTheme(
+                  textStyle: AppStyles.styleSemiBold16,
                   width: 56,
                   height: 56,
                   decoration: BoxDecoration(

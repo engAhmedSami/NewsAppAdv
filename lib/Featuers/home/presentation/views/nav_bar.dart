@@ -7,6 +7,8 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const PersistentTab();
+    return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        body: const PersistentTab());
   }
 }

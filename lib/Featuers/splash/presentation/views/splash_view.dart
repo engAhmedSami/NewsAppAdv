@@ -8,9 +8,9 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xffe4e8e9),
-      body: AnimatedSplashViewBody(),
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      body: const AnimatedSplashViewBody(),
     );
   }
 }

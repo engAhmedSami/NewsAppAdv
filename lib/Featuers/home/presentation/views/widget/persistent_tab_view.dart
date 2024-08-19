@@ -32,7 +32,7 @@ class PersistentTabState extends State<PersistentTab> {
       resizeToAvoidBottomInset: true,
       stateManagement: true,
       hideNavigationBarWhenKeyboardAppears: true,
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       isVisible: true,
       navBarHeight: kBottomNavigationBarHeight,
       navBarStyle: NavBarStyle.style1,

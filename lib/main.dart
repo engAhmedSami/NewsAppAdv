@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:newsapp/Core/helper_function/on_generate_routes.dart';
+import 'package:newsapp/Core/helper_function/theme_provider.dart';
 import 'package:newsapp/Core/services/custom_block_observer.dart';
 import 'package:newsapp/Core/services/get_it_service.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
-import 'package:newsapp/Core/utils/app_colors.dart';
+import 'package:newsapp/Core/utils/themas.dart';
 import 'package:newsapp/firebase_options.dart';
 import 'package:newsapp/generated/l10n.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +20,10 @@ void main() async {
   );
   await Prfs.init();
   setupGetit();
-  runApp(const NewsApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => ThemeProvider(),
+    child: const NewsApp(),
+  ));
 }
 
 class NewsApp extends StatelessWidget {
@@ -36,13 +41,9 @@ class NewsApp extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       onGenerateRoute: onGenerateRoute,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: AppColors.primaryColor,
-        fontFamily: 'Montserrat',
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.primaryColor,
-        ),
-      ),
+      theme: lightmode,
+      darkTheme: darkmode,
+      themeMode: Provider.of<ThemeProvider>(context).themeMode,
     );
   }
 }

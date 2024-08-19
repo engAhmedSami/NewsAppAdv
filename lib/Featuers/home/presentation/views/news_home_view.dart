@@ -10,14 +10,16 @@ class NewsHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: cUsomAppBar(),
+      appBar: cUsomAppBar(
+        context,
+      ),
       body: const NewsHomeViewBody(),
     );
   }
 
-  AppBar cUsomAppBar() {
+  AppBar cUsomAppBar(BuildContext context) {
     return AppBar(
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,

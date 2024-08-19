@@ -20,15 +20,19 @@ class SigninView extends StatelessWidget {
         getIt.get<AuthRepo>(),
       ),
       child: Scaffold(
-        appBar: buildAppBar(),
+        appBar: buildAppBar(
+          context,
+        ),
         body: const SigninViewBodyBlocConsumer(),
       ),
     );
   }
 
-  AppBar buildAppBar() {
+  AppBar buildAppBar(
+    BuildContext context,
+  ) {
     return AppBar(
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       centerTitle: true,
       title: Text(
         'LogIn',
