@@ -1,7 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:newsapp/Core/services/firebase_auth_service.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
+import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 import 'package:newsapp/Featuers/home/user_info/persentation/views/widget/user_info_list_tile.dart';
 import 'package:provider/provider.dart';
 import 'package:newsapp/Core/helper_function/theme_provider.dart';
@@ -83,9 +86,18 @@ class _SettingViewBodyState extends State<SettingViewBody> {
             leading: const Icon(Icons.logout),
             title: const Text('Logout'),
             onTap: () async {
-              bool rememberMe = await userPrefs.isRememberMe();
-              await userPrefs.clearLoginState(rememberMe: rememberMe);
+              // Signing out the user
               await firebaseAuthService.signOut();
+
+              // Clearing user preferences
+              await userPrefs.clearLoginState(rememberMe: true);
+
+              // Navigate to Sign-in view after logging out
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const SigninView(),
+                ),
+              );
             },
           ),
         ],

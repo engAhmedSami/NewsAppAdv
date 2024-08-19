@@ -47,6 +47,7 @@ dependencies:
   flutter_facebook_auth: ^7.0.1
   flutter_localizations:
     sdk: flutter
+  flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.10+1
   flutter_svprogresshud: ^1.0.1
   font_awesome_flutter: ^10.7.0

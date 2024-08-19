@@ -232,6 +232,8 @@
 //     }
 //   }
 
+// ignore_for_file: use_build_context_synchronously
+
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
@@ -364,7 +366,7 @@ class EditUserInfoViewState extends State<EditUserInfoView> {
       widget.onUserInfoUpdated();
 
       if (context.mounted) {
-        Navigator.of(context).pop(true); // Notify parent widget of the update
+        Navigator.of(context).pop(); // Notify parent widget of the update
       }
     } catch (e) {
       debugPrint("Error updating user info: $e");
