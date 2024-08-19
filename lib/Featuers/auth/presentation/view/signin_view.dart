@@ -4,7 +4,8 @@ import 'package:newsapp/Core/services/get_it_service.dart';
 import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
 import 'package:newsapp/Featuers/auth/domain/repos/auth_repo.dart';
-import 'package:newsapp/Featuers/auth/presentation/signin_cubit/signin_cubit.dart';
+import 'package:newsapp/Featuers/auth/presentation/manager/signin_cubit/signin_cubit.dart';
+
 import 'package:newsapp/Featuers/auth/presentation/view/widget/signin_view_body_bloc_consumer.dart';
 
 class SigninView extends StatelessWidget {

@@ -5,7 +5,7 @@ import 'package:newsapp/Core/helper_function/scccess_top_snak_bar.dart';
 import 'package:newsapp/Core/services/auth_handeler.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
 import 'package:newsapp/Core/widget/custom_progrss_hud.dart';
-import 'package:newsapp/Featuers/auth/presentation/signin_cubit/signin_cubit.dart';
+import 'package:newsapp/Featuers/auth/presentation/manager/signin_cubit/signin_cubit.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/signin_view_body.dart';
 
 class SigninViewBodyBlocConsumer extends StatelessWidget {

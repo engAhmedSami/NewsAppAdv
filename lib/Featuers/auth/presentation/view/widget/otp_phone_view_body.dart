@@ -7,7 +7,7 @@ import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Core/utils/app_images.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
-import 'package:newsapp/Featuers/auth/presentation/phone_signin/phone_signin_cubit.dart';
+import 'package:newsapp/Featuers/auth/presentation/manager/signin_cubit/signin_cubit.dart';
 import 'package:newsapp/constants.dart';
 import 'package:pinput/pinput.dart';
 

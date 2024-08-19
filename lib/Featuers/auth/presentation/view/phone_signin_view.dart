@@ -6,8 +6,8 @@ import 'package:newsapp/Core/services/get_it_service.dart';
 import 'package:newsapp/Core/widget/build_app.dart';
 import 'package:newsapp/Core/widget/custom_progrss_hud.dart';
 import 'package:newsapp/Featuers/auth/domain/repos/auth_repo.dart';
-import 'package:newsapp/Featuers/auth/presentation/phone_signin/phone_signin_cubit.dart';
-import 'package:newsapp/Featuers/auth/presentation/phone_signin/phone_signin_state.dart';
+import 'package:newsapp/Featuers/auth/presentation/manager/signin_cubit/signin_cubit.dart';
+
 import 'package:newsapp/Featuers/auth/presentation/view/otp_phone_view.dart';
 import 'widget/phone_signin_view_body.dart';
 

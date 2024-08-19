@@ -7,7 +7,7 @@ import 'package:newsapp/Core/services/get_it_service.dart';
 import 'package:newsapp/Core/widget/build_app.dart';
 import 'package:newsapp/Core/widget/custom_progrss_hud.dart';
 import 'package:newsapp/Featuers/auth/domain/repos/auth_repo.dart';
-import 'package:newsapp/Featuers/auth/presentation/signin_cubit/signin_cubit.dart';
+import 'package:newsapp/Featuers/auth/presentation/manager/signin_cubit/signin_cubit.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/forgot_password_view_body.dart';
 
 class ForgotPasswordView extends StatelessWidget {
