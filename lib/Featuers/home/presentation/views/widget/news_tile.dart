@@ -35,7 +35,9 @@ class NewsTile extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             datasmodel.title,
-            style: AppStyles.styleSemiBold16,
+            style: AppStyles.styleSemiBold18.copyWith(
+              color: AppColors.secondaryColor,
+            ),
             maxLines: 3,
             overflow: TextOverflow.fade,
             softWrap: true,
@@ -45,7 +47,7 @@ class NewsTile extends StatelessWidget {
           Text(
             datasmodel.description ?? '',
             maxLines: 3,
-            style: AppStyles.styleMedium13,
+            style: AppStyles.styleMedium13.copyWith(color: Colors.grey),
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.left,
             softWrap: true,

@@ -96,7 +96,7 @@ class HeaderCountryWidgetState extends State<HeaderCountryWidget> {
                 value: countryName,
                 child: Text(
                   countryName,
-                  style: AppStyles.styleMedium16,
+                  style: AppStyles.styleSemiBold16,
                   overflow: TextOverflow.ellipsis, // Handle long text
                 ),
               );
