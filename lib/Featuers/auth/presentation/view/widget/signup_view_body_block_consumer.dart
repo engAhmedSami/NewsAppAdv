@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:newsapp/Core/helper_function/failuer_top_snak_bar.dart';
 import 'package:newsapp/Core/helper_function/scccess_top_snak_bar.dart';
-import 'package:newsapp/Featuers/auth/presentation/signup_cubit/signup_cubit.dart';
+import 'package:newsapp/Featuers/auth/presentation/manager/signup_cubit/signup_cubit.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/verfied_email_view.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/signup_view_body.dart';
 

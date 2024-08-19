@@ -4,7 +4,7 @@ import 'package:newsapp/Core/helper_function/failuer_top_snak_bar.dart';
 import 'package:newsapp/Core/widget/custom_botton.dart';
 import 'package:newsapp/Core/widget/custom_text_field.dart';
 import 'package:newsapp/Core/widget/news_app_text.dart';
-import 'package:newsapp/Featuers/auth/presentation/signup_cubit/signup_cubit.dart';
+import 'package:newsapp/Featuers/auth/presentation/manager/signup_cubit/signup_cubit.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/have_an_account_widget.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/password_field.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/widget/terms_and_condition.dart';

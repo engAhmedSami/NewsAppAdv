@@ -37,7 +37,17 @@ class _SearchViewBodyState extends State<SearchViewBody> {
             prefixIcon: const Icon(Icons.search),
             textInputType: TextInputType.text,
             controller: searchController,
-            onSubmitted: (_) => _onSearch(), // Trigger search on submit
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter a search term';
+              }
+              return null;
+            },
+            onSubmitted: (value) {
+              searchController.text = value;
+
+              _onSearch();
+            }, // Trigger search on submit
           ),
           const SizedBox(height: 24),
           Expanded(

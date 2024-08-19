@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
+import 'package:newsapp/Core/utils/app_colors.dart';
 import 'package:newsapp/Core/utils/app_styles.dart';
 import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 import 'package:newsapp/constants.dart';
@@ -50,11 +51,13 @@ class PageViewItem extends StatelessWidget {
                 Navigator.of(context)
                     .pushReplacementNamed(SigninView.routeName);
               },
-              child: const Padding(
-                padding: EdgeInsets.all(20),
+              child: Padding(
+                padding: const EdgeInsets.all(20),
                 child: Text(
                   'Skip',
-                  style: AppStyles.styleMedium20,
+                  style: AppStyles.styleMedium20.copyWith(
+                    color: AppColors.secondaryColor,
+                  ),
                 ),
               ),
             ),
