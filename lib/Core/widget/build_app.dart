@@ -4,7 +4,7 @@ import 'package:newsapp/Core/utils/app_styles.dart';
 
 AppBar buildAppBar(context, {required String title}) {
   return AppBar(
-    backgroundColor: Theme.of(context).colorScheme.surface,
+    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
     leading: GestureDetector(
       onTap: () {
         Navigator.pop(context);

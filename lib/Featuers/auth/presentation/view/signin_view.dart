@@ -32,7 +32,7 @@ class SigninView extends StatelessWidget {
     BuildContext context,
   ) {
     return AppBar(
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       centerTitle: true,
       title: Text(
         'LogIn',

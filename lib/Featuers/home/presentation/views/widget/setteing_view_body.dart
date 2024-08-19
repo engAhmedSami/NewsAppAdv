@@ -1,8 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:newsapp/Core/services/firebase_auth_service.dart';
 import 'package:newsapp/Core/services/shared_preferences_sengleton.dart';
-import 'package:newsapp/Featuers/auth/presentation/view/signin_view.dart';
 import 'package:newsapp/Featuers/home/user_info/persentation/views/widget/user_info_list_tile.dart';
 import 'package:provider/provider.dart';
 import 'package:newsapp/Core/helper_function/theme_provider.dart';
@@ -30,46 +29,53 @@ class _SettingViewBodyState extends State<SettingViewBody> {
           const Divider(),
 
           // Settings Options
-          ListTile(
-            leading: const Icon(Icons.notifications),
-            title: const Text('Notifications'),
-            onTap: () {
-              // Handle Notifications setting
-            },
+          const ListTile(
+            leading: Icon(Icons.notifications),
+            title: Text('Notifications'),
           ),
+
+          // Theme Selection Options
           ListTile(
             leading: const Icon(Icons.dark_mode),
-            title: const Text('Dark Mode'),
-            trailing: Switch(
-              value: themeProvider.themeMode == ThemeMode.dark,
-              onChanged: (bool value) {
-                themeProvider.toggleTheme();
+            title: const Text('Theme'),
+            trailing: DropdownButton<ThemeMode>(
+              value: themeProvider.themeMode,
+              items: const [
+                DropdownMenuItem(
+                  value: ThemeMode.light,
+                  child: Text('Light Mode'),
+                ),
+                DropdownMenuItem(
+                  value: ThemeMode.dark,
+                  child: Text('Dark Mode'),
+                ),
+                DropdownMenuItem(
+                  value: ThemeMode.system,
+                  child: Text('System Default'),
+                ),
+              ],
+              onChanged: (ThemeMode? newMode) {
+                if (newMode != null) {
+                  themeProvider.toggleTheme(newMode);
+                }
               },
             ),
           ),
-          ListTile(
-            leading: const Icon(Icons.language),
-            title: const Text('Language'),
-            onTap: () {
-              // Handle Language setting
-            },
+
+          const ListTile(
+            leading: Icon(Icons.language),
+            title: Text('Language'),
           ),
           const Divider(),
 
           // Additional Options
-          ListTile(
-            leading: const Icon(Icons.privacy_tip),
-            title: const Text('Privacy'),
-            onTap: () {
-              // Handle Privacy setting
-            },
+          const ListTile(
+            leading: Icon(Icons.privacy_tip),
+            title: Text('Privacy'),
           ),
-          ListTile(
-            leading: const Icon(Icons.info),
-            title: const Text('About'),
-            onTap: () {
-              // Handle About setting
-            },
+          const ListTile(
+            leading: Icon(Icons.info),
+            title: Text('About'),
           ),
 
           // Sign Out Option
@@ -80,9 +86,6 @@ class _SettingViewBodyState extends State<SettingViewBody> {
               bool rememberMe = await userPrefs.isRememberMe();
               await userPrefs.clearLoginState(rememberMe: rememberMe);
               await firebaseAuthService.signOut();
-
-              if (!mounted) return; // Ensure context is still valid
-              Navigator.of(context).pushReplacementNamed(SigninView.routeName);
             },
           ),
         ],
