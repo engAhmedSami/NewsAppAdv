@@ -9,9 +9,6 @@ A Flutter-based news application that allows users to browse news articles from 
 - Option to view full articles on the source website
 - Cross-platform support (Android & iOS)
 
-## 📸 Screenshots
-
-_(Add some screenshots of your app here)_
 
 ## 🚀 Getting Started
 
